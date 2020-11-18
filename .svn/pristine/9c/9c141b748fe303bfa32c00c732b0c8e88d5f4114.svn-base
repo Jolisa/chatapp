@@ -1,0 +1,85 @@
+package jmb26_wmj1.chatapp.chatroom.view;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.TextArea;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.SwingUtilities;
+
+import jmb26_wmj1.chatapp.client.view.ClientView;
+
+public class ChatRoomView extends JPanel {
+	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5244971942429407991L;
+	private IChatRoomView2ModelAdapter v2mAdpt; 
+	private final JPanel messagePanel = new JPanel();
+	private final JScrollPane messageScrollPane = new JScrollPane();
+	private final JTextArea messageArea = new JTextArea();
+	
+	
+	//Constructor 
+	
+	public ChatRoomView(IChatRoomView2ModelAdapter adpt) {
+		this.v2mAdpt = adpt;
+		initGUI();
+	}
+	
+	public void updatePanel(String contents) {
+		
+	}
+	
+	public void start() {
+		
+		this.setVisible(true);
+	}
+	private void initGUI() {
+		messagePanel.setLayout(new GridLayout(1, 0, 0, 0));
+		messageScrollPane.setToolTipText("scrollpane containing message exchanges");
+		
+		messagePanel.add(messageScrollPane);
+		messageArea.setToolTipText("text area containing message exchanges");
+		
+		
+		messageScrollPane.setViewportView(messageArea);
+		messageArea.append("Welcome to chat! \n");
+		
+		
+		
+		
+	}
+	public JPanel getPanel() {
+		// TODO Auto-generated method stub
+		return messagePanel;
+	}
+
+	public void updateTextView(String text) {
+		//do we need to call this within an invokeLater?
+		 SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						messageArea.append(text + "\n");
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
+		
+	}
+	
+
+
+
+}
+
+
+

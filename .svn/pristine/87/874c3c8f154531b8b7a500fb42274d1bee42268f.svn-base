@@ -1,0 +1,43 @@
+/**
+ * 
+ */
+package jmb26_wmj1.chatapp.chatroom.model;
+
+import common.IChatAppConnector;
+import common.IChatRoomConnector;
+
+/**
+ * @author wj
+ *
+ */
+public class ChatRoomModel {
+	
+	// chatroom 
+	private IChatRoomConnector chatroom;
+	
+	// stub connector 
+	private IChatAppConnector userStub;
+	
+	// adapter from mini mvc to main MVC 
+	private IMini2MainAdapter m2MAdpt; 
+	
+	// adapter from model to view 
+	private IChatRoomModel2ViewAdapter m2vAdpt;
+	
+	public ChatRoomModel(IChatRoomConnector room, IMini2MainAdapter adpt, IChatAppConnector _userStub, IChatRoomModel2ViewAdapter _m2vAdpt) {
+		
+		
+		// do we make chatroom somehow ? 
+		//chatroom = new Chatroom implementation here >>> ? 
+		
+		
+		m2MAdpt = adpt;
+		userStub = _userStub;
+		m2vAdpt = _m2vAdpt; 
+		
+		
+	}
+	
+	
+
+}

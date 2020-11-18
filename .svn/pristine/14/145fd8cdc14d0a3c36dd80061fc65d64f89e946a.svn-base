@@ -1,0 +1,27 @@
+/**
+ * 
+ */
+package jmb26_wmj1.chatapp.client.view;
+
+/**
+ * @author jolisabrown
+ *
+ */
+public class IView2ModelAdapter {
+
+	public void message(String message) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void connect(String remoteHost) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void quit() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

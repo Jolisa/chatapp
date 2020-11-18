@@ -1,0 +1,101 @@
+/**
+ * 
+ */
+package jmb26_wmj1.chatapp.chatroom.controller;
+
+import javax.swing.JPanel;
+
+import common.IChatAppConnector;
+import common.IChatRoomConnector;
+import jmb26_wmj1.chatapp.chatroom.model.ChatRoomModel;
+import jmb26_wmj1.chatapp.chatroom.model.IChatRoomModel2ViewAdapter;
+import jmb26_wmj1.chatapp.chatroom.model.IMini2MainAdapter;
+import jmb26_wmj1.chatapp.chatroom.view.ChatRoomView;
+import jmb26_wmj1.chatapp.chatroom.view.IChatRoomView2ModelAdapter;
+import jmb26_wmj1.chatapp.client.model.Chatroom;
+
+/**
+ * @author wj
+ *
+ */
+public class ChatRoomController {
+	
+	/**
+	 * The chat room model 
+	 */
+	private ChatRoomModel roomModel;
+	
+	/**
+	 * The chat room view
+	 */
+	private ChatRoomView roomView;
+	
+	
+	/**
+	 * Constructor 
+	 */
+	public ChatRoomController(Chatroom chatroom, IChatAppConnector userMainStub, IMini2MainAdapter m2MAdpt) {
+		
+		roomView = new ChatRoomView(new IChatRoomView2ModelAdapter() {
+			
+			public void createPanel();
+			
+			// override methods 
+			public void updateTextPanel(Message contents);
+			
+			
+			
+			public void getPanel();
+			
+		});
+		
+		JPanel chatView = new JPanel();
+		
+		roomModel = new ChatRoomModel(chatroom, m2MAdpt, userMainStub, new IChatRoomModel2ViewAdapter() {
+			
+			// override mthods 
+			receiveMessage();
+			
+			@Override
+			public JPanel createPanel(String roomName) {
+				return roomView.createPanel();
+			};
+			
+			@Override
+			public JPanel updatePanel(String roomName) {
+				return roomView.createPanel();
+			};
+			
+			
+			
+		});
+		
+		
+	}
+		
+		
+		// getters for mini mvc parts? 
+		
+		public ChatRoomModel getMiniModel() {
+			return roomModel;
+		}
+		
+//		public ChatRoomView getMiniView() {
+//			return roomView; 
+//		}
+		public JPanel getMiniView() {
+			return roomView.getPanel(); 
+		}
+		
+		// some kind of start again? 
+		
+		public void start() {
+			
+			//roomModel.start();
+			roomView.createPanel();
+			roomView.start(); 
+			
+		}
+	}
+	
+	

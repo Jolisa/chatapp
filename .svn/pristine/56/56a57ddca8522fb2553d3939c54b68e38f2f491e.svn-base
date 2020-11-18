@@ -1,0 +1,12 @@
+package jmb26_wmj1.chatapp.client.model;
+
+/**
+ *  Adapter from the main to the mini MVC 
+ * @author wj
+ *
+ */
+public interface IMain2MiniAdapter {
+
+	Chatroom getRoom();
+
+}

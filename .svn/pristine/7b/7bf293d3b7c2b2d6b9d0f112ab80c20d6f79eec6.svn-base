@@ -1,0 +1,41 @@
+/**
+ * 
+ */
+package jmb26_wmj1.chatapp.data;
+
+import common.ChatAppDataPacket;
+import common.message.IMessage;
+import common.message.type.error.IErrorMessage;
+import jmb26_wmj1.chatapp.data.*;
+
+/**
+ * @author jolisabrown
+ *
+ */
+public class ErrorMessage implements IErrorMessage {
+	
+	CmdToModelAdapter adpt;
+	String error;
+	ChatAppDataPacket packet;
+	
+	
+	public ErrorMessage(CmdToModelAdapter _adpt, ChatAppDataPacket _packet,String _error) {
+		this.adpt = _adpt;
+		this.error = _error;
+		this.packet = _packet;
+	}
+	
+	@Override
+	public ChatAppDataPacket<? extends IMessage> getErrorMessage() {
+		// TODO Auto-generated method stub
+		
+		return packet;
+	}
+
+	@Override
+	public String getErrorString() {
+		// TODO Auto-generated method stub
+		return error;
+	}
+
+}

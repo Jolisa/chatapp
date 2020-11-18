@@ -1,0 +1,142 @@
+package jmb26_wmj1.chatapp.chatroom.view;
+
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.EventQueue;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.TextArea;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
+import javax.swing.SwingUtilities;
+
+import jmb26_wmj1.chatapp.client.view.ClientView;
+
+public class ChatRoomView extends JPanel {
+	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5244971942429407991L;
+	private IChatRoomView2ModelAdapter v2mAdpt; 
+	private final JPanel messagePanel = new JPanel();
+	private final JScrollPane messageScrollPane = new JScrollPane();
+	private final JTextArea messageArea = new JTextArea();
+	private final JPanel chatroomPanel = new JPanel();
+	private final JPanel textPanel = new JPanel();
+	private final JPanel connectButtonsPanel = new JPanel();
+	private final JTextField messageInputTextArea = new JTextField();
+	private final JButton sendTextButton = new JButton("Send Text");
+	private final JButton sendFileButton = new JButton("Send File");
+	
+	
+	//Constructor 
+	
+	public ChatRoomView(IChatRoomView2ModelAdapter adpt) {
+		this.v2mAdpt = adpt;
+		initGUI();
+	}
+	
+	public void updatePanel(String contents) {
+		
+	}
+	
+	public void start() {
+		
+		this.setVisible(true);
+	}
+	private void initGUI() {
+		chatroomPanel.setLayout(new GridLayout(2, 0, 0, 0));
+		chatroomPanel.add(messagePanel);
+		messagePanel.setLayout(new GridLayout(1, 0, 0, 0));
+		messageScrollPane.setToolTipText("scrollpane containing message exchanges");
+		
+		messagePanel.add(messageScrollPane);
+		messageArea.setToolTipText("text area containing message exchanges");
+		
+		
+		messageScrollPane.setViewportView(messageArea);
+		messageArea.append("Welcome to chat! \n");
+		chatroomPanel.add(connectButtonsPanel);
+		messageInputTextArea.setToolTipText("Send text correspondence");
+		messageInputTextArea.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
+		
+		connectButtonsPanel.add(messageInputTextArea);
+		connectButtonsPanel.setLayout(new GridLayout(0, 3, 0, 0));
+		sendTextButton.setToolTipText("Send text");
+		connectButtonsPanel.add(sendTextButton);
+		
+		sendTextButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 SwingUtilities.invokeLater(new Runnable() {
+						public void run() {
+							try {
+								//messageArea.append(messageInputTextArea.getText() + "\n");
+								v2mAdpt.sendText(messageInputTextArea.getText() + "\n");
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+						}
+					});
+				//view2ModelAdpt.inviteUser(hostComboBox.getItemAt(hostComboBox.getSelectedIndex()), roomsComboBox.getItemAt(roomsComboBox.getSelectedIndex()));
+			}
+		});
+		
+		connectButtonsPanel.add(sendFileButton);
+		sendFileButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				
+			}
+		});
+		
+		
+	
+		
+		
+		
+	}
+	public JPanel getPanel() {
+		// TODO Auto-generated method stub
+		return chatroomPanel;
+	}
+
+	public void updateTextView(String text) {
+		//do we need to call this within an invokeLater?
+		messageArea.append(text + "\n");
+		
+	}
+	
+	
+	
+	/*public void addComponent(Component component) {
+		JFrame messageFrame = new JFrame("New Component");
+		messageFrame.getContentPane().add(component);
+		//set size??? 
+		messageFrame.pack();
+		messageFrame.setLocationRelativeTo(null);;
+		messageFrame.setVisible(true);;
+		
+		
+		
+	}*/
+
+
+
+}
+
+
+

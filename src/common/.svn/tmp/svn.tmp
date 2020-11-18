@@ -1,0 +1,32 @@
+package common.message.type;
+
+import common.IChatAppReceiver;
+import common.message.IMessage;
+import provided.datapacket.DataPacketIDFactory;
+import provided.datapacket.IDataPacketData;
+import provided.datapacket.IDataPacketID;
+
+/**
+ * Message type that receivers send when joining a chat room. 
+ * All receivers in a chat room would execute the connect method
+ * to receive the stub of a new receiver that joined the room.
+ * @author Group C
+ *
+ */
+public interface IJoinMessage extends IMessage {
+	
+	/**
+	 * Returns ID of data type
+	 * @return data packet ID of data type
+	 */
+	public static IDataPacketID GetID() {
+		return DataPacketIDFactory.Singleton.makeID(IJoinMessage.class);
+	}
+	
+	/**
+	 * A message that can be executed to return an IChatAppReceiver.
+	 * @return default message that someone has joined the chat room
+	 */
+	public IChatAppReceiver connect();
+	
+}

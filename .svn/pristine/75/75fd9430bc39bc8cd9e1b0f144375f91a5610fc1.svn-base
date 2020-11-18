@@ -1,0 +1,108 @@
+package jmb26_wmj1.chatapp.model;
+
+import java.rmi.registry.Registry;
+
+import jmb26_wmj1.chatapp.client.model.IModel2ViewAdapter;
+import provided.rmiUtils.IRMIUtils;
+
+public class ClientModel {
+
+	private static final String BOUND_NAME = null;
+	private IRMIUtils rmiUtils;
+	IModel2ViewAdapter model2ViewAdapter;
+
+	public ClientModel(IModel2ViewAdapter iModel2ViewAdapter) {
+		// TODO Auto-generated constructor stub
+		this.model2ViewAdapter = iModel2ViewAdapter;
+	}
+
+	/**
+	 * Get the internal IRMIUtils instance being used.    The discovery model start method needs the main model's IRMIUtils.
+	 * ONLY call the method AFTER the model, i.e. the internal IRMIUtils, has been started!
+	 * @return The internal IRMIUtils instance
+	 */
+	public IRMIUtils getRMIUtils() {
+		return this.rmiUtils;
+	}
+
+	/**
+	 * Manual connection to a Registry to retrieve and process a stub from it.
+	 * Connects to the Registry at the given address, retrieves a stub from it, 
+	 * then delegates to connectToStub() to process the stub.
+	 * @param remoteRegistryIPAddr  The IP address of the remote Registry
+	 * @return A status message string
+	 */
+	public String connectTo(String remoteRegistryIPAddr) {
+		try {
+			//outputCmd.accept("[MainModel.connectTo()] Locating registry at " + remoteRegistryIPAddr+ "...");
+			
+			model2ViewAdapter.accept("[MainModel.connectTo()] Locating registry at " + remoteRegistryIPAddr+ "...");
+			Registry registry = rmiUtils.getRemoteRegistry(remoteRegistryIPAddr);
+			//outputCmd.accept("[MainModel.connectTo()] Found registry: " + registry );
+			model2ViewAdapter.accept("[MainModel.connectTo()] Found registry: " + registry );
+			IRemoteStubType remoteStub = (IRemoteStubType) registry.lookup(BOUND_NAME);   // Replace "IRemoteStubType" and "BOUND_NAME" with the appropriate values for the application  
+			//outputCmd.accept("[MainModel.connectTo()] Found remote stub: " + remoteStub);
+			model2ViewAdapter.accept("[MainModel.connectTo()] Found remote stub: " + remoteStub);
+			connectToStub(remoteStub);
+
+		} catch (Exception e) {
+			String errMsg = "[ERROR!!!] [MainModel.connectTo()] Exception connecting to " + remoteRegistryIPAddr+ ": " + e;
+			System.err.println(errMsg);  // to show error msg with stack trace on stderr
+			e.printStackTrace();
+			//outputCmd.accept(errMsg);
+			model2ViewAdapter.accept(errMsg);
+
+			return "No connection established!";
+		}
+		return "Connection to " + remoteHost + " established!";
+	}
+
+	/**
+	 * Process the newly acquired stub.  This is the method that the discovery model uses in "Client" or "Client + Server" usage modes 
+	 * @param stub The newly acquired stub 
+	 */
+	public void connectToStub(IRemoteStubType  stub) {    // Replace "IRemoteStubType" with the appropriate for the application, i.e. the Remote type of stub in Registry)  
+		// -- processing code elided ---
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	///OLD THINGS
+	public void sendMsgToComputeEngine(String message) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void connectTo(String remoteHost) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void stop() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void start() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

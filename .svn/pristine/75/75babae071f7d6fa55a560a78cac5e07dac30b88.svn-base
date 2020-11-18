@@ -1,0 +1,89 @@
+/**
+ * 
+ */
+package jmb26_wmj1.chatapp.chatroom.model;
+
+import java.rmi.RemoteException;
+
+import common.ChatAppDataPacket;
+import common.IChatAppConnector;
+import common.IChatAppReceiver;
+import common.IChatRoomConnector;
+import common.message.IMessage;
+import jmb26_wmj1.chatapp.client.model.Chatroom;
+import jmb26_wmj1.chatapp.data.LeaveData;
+import jmb26_wmj1.chatapp.util.ChatRoomConnector;
+
+/**
+ * @author wj
+ *
+ */
+public class ChatRoomModel {
+	
+	// chatroom 
+	private IChatRoomConnector chatroom;
+	
+	// stub connector 
+	private IChatAppConnector userStub;
+	
+	// stub of member 
+	
+	private IChatAppReceiver receiverStub; 
+	
+	// adapter from mini mvc to main MVC 
+	private IMini2MainAdapter m2MAdpt; 
+	
+	// adapter from model to view 
+	private IChatRoomModel2ViewAdapter m2vAdpt;
+
+	
+	public ChatRoomModel(IChatRoomConnector chatroom2, IMini2MainAdapter adpt, IChatAppConnector _userStub, IChatRoomModel2ViewAdapter _m2vAdpt) {
+		
+		
+		// do we make chatroom somehow ? 
+		//chatroom = new Chatroom implementation here >>> ? 
+		
+		chatroom = new ChatRoomConnector(chatroom2.getChatRoomName());
+		
+		// add all existing members to this room 
+		for (IChatAppReceiver receiverStub : chatroom2.getAllReceivers()) {
+			chatroom.getAllReceivers().add(receiverStub);
+		}
+		
+		
+		m2MAdpt = adpt;
+		userStub = _userStub;
+		m2vAdpt = _m2vAdpt; 
+		chatroom = chatroom2;
+		
+		
+	}
+
+	public IChatRoomConnector getRoom() {
+		// TODO Auto-generated method stub
+		return this.chatroom;
+	}
+
+	
+	///////////////////////////////////////////////////
+	
+	// remove room from list of rooms 
+	public void removeRoomfromList() {
+		m2MAdpt.removeRoomFromMainList(chatroom);
+	}
+	
+	public void leaveRoom() throws RemoteException {
+		
+		chatroom.getAllReceivers().remove(receiverStub); 
+		
+		LeaveData data = new LeaveData(); 
+		/// not sure what to do after,.... 
+		
+		
+		
+		
+		
+	}
+	
+
+}

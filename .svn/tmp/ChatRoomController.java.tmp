@@ -1,0 +1,186 @@
+/**
+ * 
+ */
+package jmb26_wmj1.chatapp.chatroom.controller;
+
+import java.awt.Component;
+import java.rmi.RemoteException;
+
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+
+import common.IChatAppConnector;
+import common.IChatRoomConnector;
+import jmb26_wmj1.chatapp.chatroom.model.ChatRoomModel;
+import jmb26_wmj1.chatapp.chatroom.model.IChatRoomModel2ViewAdapter;
+import jmb26_wmj1.chatapp.chatroom.model.IMini2MainAdapter;
+import jmb26_wmj1.chatapp.chatroom.view.ChatRoomView;
+import jmb26_wmj1.chatapp.chatroom.view.IChatRoomView2ModelAdapter;
+import jmb26_wmj1.chatapp.client.model.Chatroom;
+
+/**
+ * @author wj
+ *
+ */
+public class ChatRoomController {
+	
+	/**
+	 * The chat room model 
+	 */
+	private ChatRoomModel roomModel;
+	
+	/**
+	 * The chat room view
+	 */
+	private ChatRoomView roomView;
+	
+	/**
+	 * The chat room instance
+	 */
+	//private IChatRoomConnector room;
+	
+	/**
+	 * Constructor 
+	 */
+	public ChatRoomController(IChatRoomConnector chatroom, IChatAppConnector userMainStub, IMini2MainAdapter m2MAdpt) {
+		
+		//this.room = chatroom;
+		
+		roomView = new ChatRoomView(new IChatRoomView2ModelAdapter() {
+			@Override 
+			public void sendText(String msg) {
+				roomModel.sendText(msg);
+			}
+
+			@Override
+			public void leaveRoom() {
+				// TODO Auto-generated method stub
+				try {
+					roomModel.leaveRoom();
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}
+
+			@Override
+			public void removeRoomfromList() {
+				// TODO Auto-generated method stub
+				roomModel.removeRoomfromList();
+			}
+
+			@Override
+			public void sendPoem(String text) {
+				// TODO Auto-generated method stub
+				roomModel.sendPoem(text);
+				
+			}
+
+			@Override
+			public void sendImage(String path) {
+				// TODO Auto-generated method stub
+				roomModel.sendImage(path);
+			}
+
+			@Override
+			public void sendPoem(String text) {
+				// TODO Auto-generated method stub
+				roomModel.sendPoem(text);
+				
+			}
+		
+		});
+		
+		
+		
+		roomModel = new ChatRoomModel(chatroom, m2MAdpt, userMainStub, new IChatRoomModel2ViewAdapter() {
+
+			@Override
+			public JPanel createPanel(String roomName) {
+				// TODO Auto-generated method stub
+				return null;
+			}
+
+			@Override
+			public JPanel updatePanel(String roomName) {
+				// TODO Auto-generated method stub
+				return null;
+			}
+
+			@Override
+			public void appendString(String t) {
+				// TODO Auto-generated method stub
+				roomView.updateTextView(t);
+				
+			}
+
+			@Override
+			public void addComponent(Component comp) {
+				// TODO Auto-generated method stub
+				roomView.addComponent(comp);
+				
+			}
+
+			@Override
+			public void addComponentImage(ImageIcon imageComponent) {
+				roomView.addImageIcon(imageComponent);
+				
+				
+			}
+
+			
+			
+			
+		});
+		
+		
+	}
+		
+		
+		
+
+		public ChatRoomModel getMiniModel() {
+			return roomModel;
+		}
+		
+		public ChatRoomView getMiniView() {
+			return roomView; 
+		}
+//		public JPanel getMiniView() {
+//			return roomView.getPanel(); 
+//		}
+		
+		
+		public void start() {
+			roomModel.start();
+			roomView.start(); 
+			
+		}
+
+
+
+//////////////////////////////////////////////////////////////////////////////////
+//		public IChatRoomConnector getMiniRoom() {
+//			// TODO Auto-generated method stub
+//			return this.room;
+//		}
+//		
+//		public void joinMiniRoom() {
+//			roomModel.joinRoom();
+//			
+//		}
+		
+//////////////////////////////////////////////////////////////////////////////////////		
+//		public void displayString(String text) {
+//			roomView.updateTextView(text);
+//		}
+//
+//
+//
+//		public void updateMainView(String text) {
+//			roomView.updateTextView(text);
+//		}
+	}
+	
+	

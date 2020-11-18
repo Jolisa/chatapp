@@ -1,0 +1,35 @@
+package jmb26_wmj1.chatapp.client.model;
+
+import java.rmi.RemoteException;
+import java.util.List;
+
+import common.IChatAppUser;
+import common.IChatRoomConnector;
+
+public class Chatroom implements IChatRoomConnector {
+
+	String roomname;
+	List<IChatAppUser> members;
+	
+	
+	public Chatroom(String roomname, List<IChatAppUser> members) {
+		
+		this.roomname = roomname;
+		this.members = members;
+		
+	}
+	
+	
+	@Override
+	public String getChatRoomName() throws RemoteException {
+		// TODO Auto-generated method stub
+		return this.roomname;
+	}
+
+	@Override
+	public List<IChatAppUser> getAllUsers() throws RemoteException {
+		// TODO Auto-generated method stub
+		return this.members;
+	}
+
+}

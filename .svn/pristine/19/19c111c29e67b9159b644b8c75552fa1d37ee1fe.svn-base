@@ -1,0 +1,69 @@
+/**
+ * 
+ */
+package jmb26_wmj1.chatapp.client.model;
+
+import javax.swing.JPanel;
+
+
+
+/**
+ * @author jolisabrown
+ *
+ */
+public interface IComponentFactory {
+	
+	
+	
+	
+	
+	/**
+	 * @return Makes the JPanel
+	 */
+	public JPanel make();
+	
+	/**
+	 * @return Updates the JPanel
+	 * (String should be generic message)
+	 */
+	public void updatePanel(String contents);
+
+	/**
+	 * The NULL strategy factory
+	 */
+	public static final IComponentFactory NULL = new IComponentFactory() {
+
+		@Override
+		public JPanel make() {
+			System.out.println("returning null assigned JPanel");
+			return new JPanel() {};
+		}
+
+		@Override
+		public void updatePanel(String contents) {
+			// TODO Auto-generated method stub
+			System.out.println("updating null assigned JPanel");
+			return;
+		}
+	};
+
+	/**
+	 * The ERROR strategy factory
+	 */
+	public static final IComponentFactory ERROR = new IComponentFactory() {
+		@Override
+		public JPanel make() {
+			
+			System.err.println("Unable to create unique component for chatroom");
+			return null;
+		}
+
+		@Override
+		public void updatePanel(String contents) {
+			// TODO Auto-generated method stub
+			System.err.println("Unable to update error chatroom");
+			return;
+		}
+	};
+
+}

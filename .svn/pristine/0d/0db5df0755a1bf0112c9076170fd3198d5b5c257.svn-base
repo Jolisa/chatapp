@@ -1,0 +1,68 @@
+package jmb26_wmj1.chatapp.client.model;
+
+import java.rmi.RemoteException;
+import java.util.List;
+import java.util.UUID;
+
+import javax.swing.JPanel;
+
+import common.IChatAppConnector;
+import common.IChatAppReceiver;
+import common.IChatRoomConnector;
+import jmb26_wmj1.chatapp.chatroom.model.IMini2MainAdapter;
+
+public class Chatroom implements IChatRoomConnector {
+
+	String roomname;
+	List<IChatAppReceiver> members;
+	public IMini2MainAdapter mini2MainAdapter;
+	public IMain2MiniAdapter main2MiniAdapter;
+	//public 
+	
+	
+	public Chatroom(String roomname, List<IChatAppReceiver> members) {
+		
+		this.roomname = roomname;
+		this.members = members;
+		
+	}
+	
+	
+//	public Chatroom(String name, List<IChatAppReceiver> currentMembers, IRoom2GuiAdapter room2GuiAdapter) {
+//		// TODO Auto-generated constructor stub
+//		this.roomname = roomname;
+//		this.members = members; 
+//	}
+
+
+	@Override
+	public String getChatRoomName()  {
+		// TODO Auto-generated method stub
+		return this.roomname;
+	}
+
+
+	@Override
+	public List<IChatAppReceiver> getAllReceivers() {
+		// TODO Auto-generated method stub
+		return this.members;
+	}
+	
+	public void setMain2MiniAdapter(IMain2MiniAdapter miniAdapter) {
+		this.main2MiniAdapter = miniAdapter;
+	}
+	
+	public void setMini2MainAdapter(IMini2MainAdapter miniAdapter) {
+		this.mini2MainAdapter = miniAdapter;
+	}
+
+
+	@Override
+	public UUID getID() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+
+}

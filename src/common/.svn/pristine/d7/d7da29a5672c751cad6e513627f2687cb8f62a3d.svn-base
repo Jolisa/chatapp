@@ -1,0 +1,47 @@
+package common;
+
+import java.util.List;
+import java.util.function.Supplier;
+
+import javax.swing.JComponent;
+
+import common.message.IMessage;
+
+/**
+ * Interface to normalize how commands get processed in the model.
+ * @author Group C
+ */
+public interface ICmdToModelAdapter {
+
+	/**
+	 * Displays a JComponent.
+	 * @param compSupplier supplier for component
+	 */
+	public void displayComponent(Supplier<JComponent> compSupplier);
+	
+	/**
+	 * Display a string.
+	 * @param text string to display
+	 */
+	public void displayString(String text);
+	
+	/**
+	 * Name of local user
+	 * @return user name of local user
+	 */
+	public String getLocalUserName();
+	
+	/**
+	 * Sends a message to an entire chat room
+	 * @param message message that's sent to an entire chat room
+	 * @param receivers all receivers in the chat room
+	 */
+	public void sendMessage(IMessage message, List<IChatAppReceiver> receivers);
+	
+	/**
+	 * Sends a message to a particular receiver in a room
+	 * @param message message that's sent to a receiver
+	 * @param receiver recipient of that message
+	 */
+	public void sendMessage(IMessage message, IChatAppReceiver receiver);
+}

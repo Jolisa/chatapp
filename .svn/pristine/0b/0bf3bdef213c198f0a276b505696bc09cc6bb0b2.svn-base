@@ -1,0 +1,83 @@
+package jmb26_wmj1.chatapp.util;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JPanel;
+
+import common.IChatAppReceiver;
+import common.IChatRoomConnector;
+import jmb26_wmj1.chatapp.chatroom.model.IMini2MainAdapter;
+import jmb26_wmj1.chatapp.client.model.IMain2MiniAdapter;
+
+public class ChatRoomConnector implements IChatRoomConnector {
+
+	
+	/**
+	 * Room's name
+	 */
+	private String name;
+	
+	/**
+	 * List of members in this room
+	 */
+	private List<IChatAppReceiver> members;
+	
+	String roomname;
+	protected JPanel guiView;
+	//public IMini2MainAdapter mini2MainAdapter;
+	//public IMain2MiniAdapter main2MiniAdapter;
+	
+	
+	
+	/**
+	 * Constructor
+	 * @param roomname Name of the room
+	 * @param id ID of the room
+	 */
+	public ChatRoomConnector(String roomname) {
+		this.name = roomname;
+		this.members = new ArrayList<>();
+	}
+	
+	/*public Chatroom(String name, List<IChatAppReceiver> currentMembers) {
+	// TODO Auto-generated constructor stub
+	this.roomname = roomname;
+	this.members = members; 
+	}*/
+
+	@Override
+	public String getChatRoomName() {
+		// TODO Auto-generated method stub
+		return name;
+	}
+
+	@Override
+	public List<IChatAppReceiver> getAllReceivers() {
+		// TODO Auto-generated method stub
+		return members;
+	}
+	
+	@Override
+	public String toString() {
+		return name;
+	}
+	
+
+
+
+	/*
+	public IMain2MiniAdapter getMain2MiniAdapter() {
+		return main2MiniAdapter;
+	}
+	
+	public void setMain2MiniAdapter(IMain2MiniAdapter miniAdapter) {
+		this.main2MiniAdapter = miniAdapter;
+	}
+	
+	public void setMini2MainAdapter(IMini2MainAdapter miniAdapter) {
+		this.mini2MainAdapter = miniAdapter;
+	}*/
+
+
+}

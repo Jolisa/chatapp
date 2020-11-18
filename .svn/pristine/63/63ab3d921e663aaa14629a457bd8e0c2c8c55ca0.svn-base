@@ -1,0 +1,19 @@
+/**
+ * 
+ */
+package jmb26_wmj1.chatapp.client.controller;
+
+import javax.swing.JPanel;
+
+/**
+ * @author jolisabrown
+ *
+ */
+public interface IMini2GuiAdapter {
+
+	/**
+	 * method connnecting IChatRoomConnector instance to main view
+	 */
+	void updateMainView(JPanel guiView, Message contents);
+	
+}

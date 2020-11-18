@@ -1,0 +1,16 @@
+/**
+ * 
+ */
+package jmb26_wmj1.chatapp.client.controller;
+
+/**
+ * @author jolisabrown
+ *
+ */
+public class MiniController {
+
+	public MiniController(IMini2GuiAdapter mini_adapter) {
+		// TODO Auto-generated constructor stub
+	}
+
+}

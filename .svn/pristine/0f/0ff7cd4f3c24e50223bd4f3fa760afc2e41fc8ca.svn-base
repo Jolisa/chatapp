@@ -1,0 +1,10 @@
+package jmb26_wmj1.chatapp.chatroom.view;
+
+public class IChatRoomView2ModelAdapter {
+
+	public void sendText(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

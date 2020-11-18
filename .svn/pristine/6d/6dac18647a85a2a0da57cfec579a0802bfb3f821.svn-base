@@ -1,0 +1,10 @@
+/**
+ * 
+ */
+/**
+ * @author jolisabrown
+ *
+ */
+module HW08 {
+	requires java.desktop;
+}

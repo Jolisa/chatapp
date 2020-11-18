@@ -1,0 +1,83 @@
+/**
+ * 
+ */
+package jmb26_wmj1.chatapp.client.view;
+
+import java.util.function.Consumer;
+
+import provided.discovery.IEndPointData;
+
+/**
+ * @author jolisabrown
+ *
+ */
+public class IView2ModelAdapter {
+
+	public void message(String message) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+
+	public void quit() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void connect(IEndPointData endPt, String category, Consumer<Iterable<IEndPointData>> updateFn) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	public void makeRoom(String text) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	/**
+	 * Method for joining a selected room
+	 * @param roomName the name of the room to be joined (represented as TDropDown1)
+	 */
+	public void joinRoom(String roomName) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	public void updateRoomView(String selectedRoom) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	public void updateRoomView(String selectedRoom, String message) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+//	///////////////////////////////////////////////////////////////////////////
+//	public getOurName() {
+//		
+//	}
+//	
+//	public void setOurName(String name) {
+//		
+//		
+//	}
+//	
+//	public void getServerName() {
+//		
+//	}
+//	
+//	public void setServerName(String name) {
+//		
+//		
+//	}
+
+}

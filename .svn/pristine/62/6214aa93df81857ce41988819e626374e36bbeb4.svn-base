@@ -1,0 +1,113 @@
+/**
+ * 
+ */
+package jmb26_wmj1.chatapp.client.view;
+
+import java.rmi.RemoteException;
+import java.util.List;
+import java.util.function.Consumer;
+import common.IChatAppConnector;
+
+import provided.discovery.IEndPointData;
+
+/**
+ * @author jolisabrown
+ *
+ */
+public interface IView2ModelAdapter<TDropDown1, TDropDown2> {
+
+//	public void message(String message) {
+//		// TODO Auto-generated method stub
+//		
+//	}
+//
+//	
+//
+//	public void quit() {
+//		// TODO Auto-generated method stub
+//		
+//	}
+//
+	public void connect(IEndPointData endPt, String category, Consumer<Iterable<IEndPointData>> updateFn);
+//
+//
+//	public void makeRoom(String text) {
+//		// TODO Auto-generated method stub
+//		
+//	}
+//
+//
+//	/**
+//	 * Method for joining a selected room
+//	 * @param roomName the name of the room to be joined (represented as TDropDown1)
+//	 */
+//	public void joinRoom(String roomName) {
+//		// TODO Auto-generated method stub
+//		
+//	}
+//
+//
+//
+//	public void updateRoomView(String selectedRoom) {
+//		// TODO Auto-generated method stub
+//		
+//	}
+//
+//
+//
+//	public void updateRoomView(String selectedRoom, String message) {
+//		// TODO Auto-generated method stub
+//		
+//	}
+//
+//
+//
+//
+//
+//
+//
+//	public void request(common.IChatAppConnector host) {
+//		// TODO Auto-generated method stub
+//		
+//	}
+	
+	//////////////////////////////////////////////////////////////////////////////////
+	
+	public void quit(); 
+	
+	public TDropDown1 connectUser(String IP) throws RemoteException; 
+	
+	public List<TDropDown2> getSelectedUserRooms(TDropDown1 stub) throws RemoteException; 
+	
+	public TDropDown2 createRoom(String name); 
+	
+	public void joinRoom(TDropDown2 room) throws RemoteException;
+	
+	public void leaveRoom(TDropDown2 room);
+	
+	public void inviteUser(TDropDown1 connectedUser, TDropDown2 yourRoom); 
+
+
+
+	
+	
+//	///////////////////////////////////////////////////////////////////////////
+//	public getOurName() {
+//		
+//	}
+//	
+//	public void setOurName(String name) {
+//		
+//		
+//	}
+//	
+//	public void getServerName() {
+//		
+//	}
+//	
+//	public void setServerName(String name) {
+//		
+//		
+//	}
+
+}

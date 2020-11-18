@@ -1,0 +1,27 @@
+/**
+ * 
+ */
+package jmb26_wmj1.chatapp.client.model;
+
+import jmb26_wmj1.chatapp.client.controller.IMini2GuiAdapter;
+
+/**
+ * @author jolisabrown
+ *
+ */
+public class IModel2ViewAdapter {
+
+	public void accept(String s) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public void startDiscoveryPanel() {}
+	
+	public void createMiniController() {}
+	
+	//why can't createMiniController have a return type?? why does it need to be void?
+
+	public IMini2GuiAdapter createMiniController(Chatroom chatroom) {};
+
+}

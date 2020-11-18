@@ -1,0 +1,45 @@
+/**
+ * 
+ */
+package jmb26_wmj1.chatapp.data;
+
+import common.IChatAppConnector;
+import common.IChatAppReceiver;
+import common.message.IMessage;
+import common.message.type.IJoinMessage;
+import provided.datapacket.DataPacket;
+import provided.datapacket.IDataPacketID;
+
+/**
+ * @author jolisabrown
+ *
+ */
+public class JoinData implements IJoinMessage {
+	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8500286915741170533L;
+	
+//	private IChatAppReceiver stub; 
+//	
+//	public JoinData(IChatAppReceiver stub) {
+//		this.stub = stub; 
+//	}
+//	
+//	public IChatAppReceiver getStub() {
+//		return stub; 
+//	}
+	
+	@Override
+	public default IDataPacketID getID() {
+		//return IJoinMessage.GetID();
+		return JoinData.
+	}
+	
+	
+	
+	
+
+}

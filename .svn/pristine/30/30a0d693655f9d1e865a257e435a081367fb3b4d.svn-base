@@ -1,0 +1,51 @@
+/**
+ * 
+ */
+package jmb26_wmj1.chatapp.client.model;
+
+import java.util.List;
+
+import common.IChatAppConnector;
+import common.IChatRoomConnector;
+import jmb26_wmj1.chatapp.client.controller.IMini2GuiAdapter;
+
+/**
+ * @author jolisabrown
+ *
+ */
+public interface IModel2ViewAdapter {
+
+	public void accept(String s);
+	
+	public void startDiscoveryPanel();
+	
+	public void createMiniController();
+	
+
+	
+
+	public void addNewPotentialRooms(List<IChatRoomConnector> friendsRooms);
+
+	
+	
+	
+
+	public void addUser(IChatAppConnector connector);
+
+	public IMain2MiniAdapter makeMiniMVC(IChatRoomConnector room, IChatAppConnector user);
+
+	public void addChatroom(IChatRoomConnector chatRoom);
+	
+	
+
+	
+	public void removeRoomFromView(IChatRoomConnector room);
+	
+	public void removeAllRooms();
+
+
+	
+
+	
+
+}

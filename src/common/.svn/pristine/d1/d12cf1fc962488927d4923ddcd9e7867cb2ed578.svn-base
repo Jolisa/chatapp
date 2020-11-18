@@ -1,0 +1,47 @@
+package common;
+
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+import java.util.List;
+import java.util.function.Supplier;
+
+import javax.swing.JComponent;
+
+import provided.datapacket.IDataPacketData;
+import provided.rmiUtils.IRMI_Defs;
+
+/**
+ * An entity that has inbound and outbound message processing. This can be used
+ * to create stubs of "users" in a chat room where a user is simply a remote 
+ * entity that can send and receive messages and commands.
+ * @author Group C
+ *
+ */
+public interface IChatAppUser extends Remote {
+	
+	/**
+	 * The name the IChatAppUser object will be bound to
+	 */
+	public static final String BOUND_NAME = "ChatAppUser";
+
+	/**
+	 * The port that the client will use to communicate with the IChatAppUser object
+	 */
+	public static final int BOUND_PORT = IRMI_Defs.STUB_PORT_SERVER;
+	
+	/**
+	 * Get name of user.
+	 * @return name of user
+	 * @throws RemoteException remote exception
+	 */
+	public String getName() throws RemoteException;
+	
+	/**
+	 * Receives messages sent from other users.
+	 * @param data data received from other user
+	 * @throws RemoteException remote exception
+	 */
+	public void receiveMessage(IDataPacketData data) throws RemoteException;
+	
+
+}

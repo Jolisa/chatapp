@@ -1,0 +1,24 @@
+package common.message.type.cmd;
+
+import common.IChatAppReceiver;
+import common.message.IMessage;
+import provided.datapacket.IDataPacketID;
+
+/**
+ * If a recipient of a message received an unknown message type from a sender,
+ * the recipient would send this message type back to the sender so the sender 
+ * can reply with an IAddCmdMessage. This should be used with ICmdToModelAdapter.
+ * @author Group C
+ * @param <M> generic type that extends IMessage
+ *
+ */
+public interface IRequestCmdMessage<M extends IMessage> extends IAddCmdMessage<M> {
+
+	/**
+	 * Requests for the proper processing command from the user that sent the message.
+	 * @param user user who sent message
+	 * @param id id of data packet
+	 * @return result of executing command
+	 */
+	M requestCmd(IChatAppReceiver user, IDataPacketID id);
+}

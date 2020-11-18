@@ -1,0 +1,76 @@
+/**
+ * 
+ */
+package jmb26_wmj1.chatapp.chatroom.controller;
+
+import common.IChatAppConnector;
+import common.IChatRoomConnector;
+import jmb26_wmj1.chatapp.chatroom.model.ChatRoomModel;
+import jmb26_wmj1.chatapp.chatroom.model.IChatRoomModel2ViewAdapter;
+import jmb26_wmj1.chatapp.chatroom.model.IMini2MainAdapter;
+import jmb26_wmj1.chatapp.chatroom.view.ChatRoomView;
+import jmb26_wmj1.chatapp.chatroom.view.IChatRoomView2ModelAdapter;
+
+/**
+ * @author wj
+ *
+ */
+public class ChatRoomController {
+	
+	/**
+	 * The chat room model 
+	 */
+	private ChatRoomModel roomModel;
+	
+	/**
+	 * The chat room view
+	 */
+	private ChatRoomView roomView;
+	
+	
+	/**
+	 * Constructor 
+	 */
+	public ChatRoomController(IChatRoomConnector chatroom, IChatAppConnector userMainStub, IMini2MainAdapter m2MAdpt) {
+		
+		roomView = new ChatRoomView(new IChatRoomView2ModelAdapter() {
+			
+			// override methods 
+			
+			
+			
+			
+		});
+		
+		roomModel = new ChatRoomModel(chatroom, m2MAdpt, userMainStub, new IChatRoomModel2ViewAdapter() {
+			
+			// override mthods 
+			
+			
+			
+		});
+		
+	}
+		
+		
+		// getters for mini mvc parts? 
+		
+		public ChatRoomModel getMiniModel() {
+			return roomModel;
+		}
+		
+		public ChatRoomView getMiniView() {
+			return roomView; 
+		}
+		
+		// some kind of start again? 
+		
+//		public void start() {
+//			
+//			roomModel.start(); 
+//			roomView.start(); 
+//			
+//		}
+	}
+	
+	

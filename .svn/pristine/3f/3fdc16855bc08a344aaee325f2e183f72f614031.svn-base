@@ -1,0 +1,33 @@
+/**
+ * 
+ */
+package jmb26_wmj1.chatapp.client.view;
+
+import java.util.function.Consumer;
+
+import provided.discovery.IEndPointData;
+
+/**
+ * @author jolisabrown
+ *
+ */
+public class IView2ModelAdapter {
+
+	public void message(String message) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+
+	public void quit() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void connect(IEndPointData endPt, String category, Consumer<Iterable<IEndPointData>> updateFn) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

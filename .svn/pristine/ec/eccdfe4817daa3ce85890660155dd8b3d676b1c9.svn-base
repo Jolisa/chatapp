@@ -1,0 +1,12 @@
+/**
+ * 
+ */
+package jmb26_wmj1.chatapp.chatroom.model;
+
+/**
+ * @author wj
+ *
+ */
+public class ChatRoomModel {
+
+}

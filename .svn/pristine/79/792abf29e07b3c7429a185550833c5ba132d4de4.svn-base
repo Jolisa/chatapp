@@ -1,0 +1,11 @@
+package jmb26_wmj1.chatapp.chatroom.model;
+
+import javax.swing.JPanel;
+
+public interface IChatRoomModel2ViewAdapter {
+
+	JPanel createPanel(String roomName);
+
+	JPanel updatePanel(String roomName);
+
+}

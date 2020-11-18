@@ -1,0 +1,299 @@
+package jmb26_wmj1.chatapp.client.view;
+
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+import java.awt.GridLayout;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComponent;
+import javax.swing.JToggleButton;
+
+import jmb26_wmj1.chatapp.chatroom.view.ChatRoomView;
+import jmb26_wmj1.chatapp.client.view.IView2ModelAdapter;
+import provided.discovery.IEndPointData;
+import provided.discovery.impl.view.DiscoveryPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextPane;
+import javax.swing.JTextArea;
+import javax.swing.JComboBox;
+import javax.swing.JTabbedPane;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class ClientView extends JFrame {
+	/**
+	 * Adapter to Model
+	 */
+	private static IView2ModelAdapter view2ModelAdpt;
+	private final JPanel controlPanel = new JPanel();
+	private final JPanel panel_1 = new JPanel();
+	private final JLabel appStartUpLabel = new JLabel("App Startup");
+	private final JLabel usernameLabel = new JLabel("Username:");
+	private final JTextField usernameInput = new JTextField();
+	private final JLabel serverNameLabel = new JLabel("Server name:");
+	private final JTextField serverNameInput = new JTextField();
+	private final JButton startButton = new JButton("START! ");
+	private final JButton exitButton = new JButton("EXIT ALL AND QUIT");
+	private final JPanel panel_2 = new JPanel();
+	private final JLabel makeChatRoomLabel = new JLabel("Make Chat Room");
+	private final JTextField chatRoomNameInput = new JTextField();
+	private final JButton makeChatRoomButton = new JButton("Make it! ");
+	private final JPanel panel_3 = new JPanel();
+	private final JLabel remoteHostLabel = new JLabel("Remote Hosts");
+	private final JPanel discoveryPanel = new JPanel();
+	private final JPanel leftDiscoveryPanel = new JPanel();
+	private final JLabel discoveryServerLabel = new JLabel("Discovery Server");
+	private final JLabel categoryLabel = new JLabel("Category");
+	private final JTextField categoryInput = new JTextField();
+	private final JCheckBox watchOnlyCheckBox = new JCheckBox("Watch Only");
+	private final JButton connectButton = new JButton("Connect");
+	private final JPanel rightDiscoveryPanel = new JPanel();
+	private final JLabel registeredEndpointsLabel = new JLabel("Registered EndPoints");
+	private final JPanel panel3 = new JPanel();
+	private final JPanel outputPanel = new JPanel();
+	private final JPanel messagePanel = new JPanel();
+	private final JScrollPane messageScrollPane = new JScrollPane();
+	private final JTextArea messageArea = new JTextArea();
+	private final JPanel sendPanel = new JPanel();
+	private final JTextField messageInputTextArea = new JTextField();
+	private final JButton sendText = new JButton("Send Text");
+	private final JButton btnSendFile = new JButton("New button");
+	private final JButton btnSendComponent = new JButton("New button");
+	private final JPanel panel_4 = new JPanel();
+	private final JPanel manualConnectPanel = new JPanel();
+	private final JLabel lblNewLabel = new JLabel("Connect To Manually");
+	private final JTextField manualConnectTextField = new JTextField();
+	private final JButton manualConnectButton = new JButton("Connect!");
+	private final JPanel hostPanel = new JPanel();
+	private final JLabel connectedHostsLabel = new JLabel("Connected Hosts");
+	private final JComboBox hostComboBox = new JComboBox();
+	private final JPanel connectButtonsPanel = new JPanel();
+	private final JButton connectInviteButton = new JButton("Invite");
+	private final JButton connectRequestButton = new JButton("Request");
+	private final JButton connectJoinButton = new JButton("Join");
+	private final JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+	
+	
+	public ClientView(IView2ModelAdapter iView2ModelAdapter) {
+		manualConnectTextField.setToolTipText("Enter IP address for manual connect");
+		manualConnectTextField.setColumns(10);
+		messageInputTextArea.setColumns(10);
+		// TODO Auto-generated constructor stub
+		this.view2ModelAdpt = iView2ModelAdapter;
+		categoryInput.setToolTipText("Enter category here ");
+		categoryInput.setColumns(10);
+		chatRoomNameInput.setToolTipText("Enter chatroom name for creation here ");
+		chatRoomNameInput.setColumns(10);
+		serverNameInput.setToolTipText("Enter server name here ");
+		serverNameInput.setColumns(10);
+		usernameInput.setToolTipText("Set Username Here");
+		usernameInput.setColumns(10);
+		initGUI();
+	}
+	private void initGUI() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 1000, 1700);
+		controlPanel.setToolTipText("Control Panel for ChatApp");
+		
+		getContentPane().add(controlPanel, BorderLayout.NORTH);
+		controlPanel.setLayout(new GridLayout(0, 4, 0, 0));
+		panel_1.setToolTipText("Contains App Startup Components");
+		
+		controlPanel.add(panel_1);
+		panel_1.setLayout(new GridLayout(7, 0, 0, 0));
+		appStartUpLabel.setToolTipText("App Startup Label");
+		
+		panel_1.add(appStartUpLabel);
+		usernameLabel.setToolTipText("Username Label");
+		usernameLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 8));
+		
+		panel_1.add(usernameLabel);
+		
+		panel_1.add(usernameInput);
+		serverNameLabel.setToolTipText("Server Name label");
+		serverNameLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 8));
+		
+		panel_1.add(serverNameLabel);
+		
+		panel_1.add(serverNameInput);
+		startButton.setToolTipText("Click to start the app!");
+		
+		panel_1.add(startButton);
+		exitButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// Stop and Exit RMI 
+				view2ModelAdpt.quit();
+				
+			}
+		});
+		exitButton.setToolTipText("Click to exit and close ChatApp");
+		
+		panel_1.add(exitButton);
+		panel_2.setToolTipText("Panel for making ChatRoom");
+		
+		controlPanel.add(panel_2);
+		panel_2.setLayout(new GridLayout(3, 0, 0, 0));
+		makeChatRoomLabel.setToolTipText("Make ChatRoom Label");
+		
+		panel_2.add(makeChatRoomLabel);
+		
+		panel_2.add(chatRoomNameInput);
+		makeChatRoomButton.setToolTipText("Click to make ChatRoom! ");
+		makeChatRoomButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				view2ModelAdpt.makeRoom(chatRoomNameInput.getText());
+			}
+		});
+		
+		panel_2.add(makeChatRoomButton);
+		panel3.setToolTipText("panel encapsulating discovery panel");
+		
+		controlPanel.add(panel3);
+		panel_4.setToolTipText("panel for holding additional connection panels");
+		
+		controlPanel.add(panel_4);
+		panel_4.setLayout(new GridLayout(3, 0, 0, 0));
+		manualConnectPanel.setToolTipText("Manual connect to panel");
+		
+		panel_4.add(manualConnectPanel);
+		manualConnectPanel.setLayout(new GridLayout(3, 0, 0, 0));
+		lblNewLabel.setToolTipText("Connect to manually label");
+		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 8));
+		
+		manualConnectPanel.add(lblNewLabel);
+		
+		manualConnectPanel.add(manualConnectTextField);
+		manualConnectButton.setToolTipText("manual connect button");
+		
+		manualConnectPanel.add(manualConnectButton);
+		hostPanel.setToolTipText("Panel that holds host info");
+		
+		panel_4.add(hostPanel);
+		hostPanel.setLayout(new GridLayout(2, 0, 0, 0));
+		connectedHostsLabel.setToolTipText("Connected Hosts Label");
+		connectedHostsLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 8));
+		
+		hostPanel.add(connectedHostsLabel);
+		hostComboBox.setToolTipText("Connected Hosts Box");
+		
+		hostPanel.add(hostComboBox);
+		connectButtonsPanel.setToolTipText("Panel that holds buttons for connecting");
+		
+		panel_4.add(connectButtonsPanel);
+		connectButtonsPanel.setLayout(new GridLayout(0, 3, 0, 0));
+		connectInviteButton.setToolTipText("Invite to chatrooms");
+		
+		connectButtonsPanel.add(connectInviteButton);
+		connectRequestButton.setToolTipText("Request chat rooms");
+		connectRequestButton.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
+		
+		connectButtonsPanel.add(connectRequestButton);
+		connectJoinButton.setToolTipText("Join selected chat room");
+		
+		connectButtonsPanel.add(connectJoinButton);
+		outputPanel.setToolTipText("panel containing all outputs from chatapp");
+
+		
+		getContentPane().add(outputPanel, BorderLayout.SOUTH);
+		outputPanel.setLayout(new GridLayout(3, 0, 0, 0));
+		messagePanel.setToolTipText("panel containing information about message exchange");
+		
+		outputPanel.add(messagePanel);
+		messagePanel.setLayout(new GridLayout(1, 0, 0, 0));
+		messageScrollPane.setToolTipText("scrollpane containing message exchanges");
+		
+		messagePanel.add(messageScrollPane);
+		messageArea.setToolTipText("text area containing message exchanges");
+		
+		
+		messageScrollPane.setViewportView(messageArea);
+		
+		outputPanel.add(tabbedPane);
+		
+		outputPanel.add(sendPanel);
+		sendPanel.setLayout(new GridLayout(0, 4, 0, 0));
+		
+		sendPanel.add(messageInputTextArea);
+		sendText.setToolTipText("button to send text");
+		
+		sendPanel.add(sendText);
+		btnSendFile.setToolTipText("button for sending file");
+		
+		sendPanel.add(btnSendFile);
+		btnSendComponent.setToolTipText("Button for sending component");
+		
+		sendPanel.add(btnSendComponent);
+		tabbedPane.setToolTipText("Tabbed pane to hold chatrooms ");
+		
+		
+		
+	}
+	public void accept(String s) {
+		// TODO Auto-generated method stub
+		messageArea.append(s + '\n');
+		
+		
+	}
+	
+//	/**
+//	 * Updates the view and contents of a specified chatroom upon call from mini mvc
+//	 * ...should this take as input a string for the panel name instead of the panel itself?
+//	 */
+//	public void updateChatView(JPanel panel, Message contents) {
+//		//in case where contents is a string
+//		messagePanel.add(new JLabel(contents));
+//	}
+	
+	
+	public void start() {
+		// TODO Auto-generated method stub
+		this.setVisible(true);
+	}
+	
+	/**
+	 * Launch the application.
+	 * @param args the args to be executed
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					ClientView frame = new ClientView(view2ModelAdpt);
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	/**
+	 * Add the given component to the control panel,  then revalidating and packing the frame.
+	 * @param comp The component to add
+	 */
+	public void addCtrlComponent(JComponent comp) {
+		panel3.add(comp);  // Add the component to the control panel
+		validate();  // re-runs the frame's layout manager to account for the newly added component 
+		//pack(); // resizes the frame and panels to make sure the newly added component is visible.  Note that this may adversely affect empty text displays without a preferred size setting.
+	}
+	
+	
+	///// set the miniview (chatroom) into this view 
+	public void installMiniView(String chatRoomName, ChatRoomView miniView) {
+		// TODO Auto-generated method stub
+		// probably tabbedpane.add? 
+		
+	}
+	
+	
+	
+	
+	
+	
+
+}

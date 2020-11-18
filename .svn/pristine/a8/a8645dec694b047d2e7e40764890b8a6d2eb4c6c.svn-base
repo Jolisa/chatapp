@@ -1,0 +1,141 @@
+package jmb26_wmj1.chatapp.view;
+
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JToggleButton;
+
+public class ChatAppView extends JFrame {
+	private final JPanel controlPanel = new JPanel();
+	private final JPanel panel_1 = new JPanel();
+	private final JLabel appStartUpLabel = new JLabel("App Startup");
+	private final JLabel usernameLabel = new JLabel("Username:");
+	private final JTextField usernameInput = new JTextField();
+	private final JLabel serverNameLabel = new JLabel("Server name:");
+	private final JTextField serverNameInput = new JTextField();
+	private final JButton startButton = new JButton("START! ");
+	private final JButton exitButton = new JButton("EXIT ALL AND QUIT");
+	private final JPanel panel_2 = new JPanel();
+	private final JLabel makeChatRoomLabel = new JLabel("Make Chat Room");
+	private final JTextField chatRoomNameInput = new JTextField();
+	private final JButton makeChatRoomButton = new JButton("Make it! ");
+	private final JPanel panel_3 = new JPanel();
+	private final JLabel remoteHostLabel = new JLabel("Remote Hosts");
+	private final JPanel discoveryPanel = new JPanel();
+	private final JPanel leftDiscoveryPanel = new JPanel();
+	private final JLabel discoveryServerLabel = new JLabel("Discovery Server");
+	private final JLabel categoryLabel = new JLabel("Category");
+	private final JTextField categoryInput = new JTextField();
+	private final JCheckBox watchOnlyCheckBox = new JCheckBox("Watch Only");
+	private final JButton connectButton = new JButton("Connect");
+	private final JPanel rightDiscoveryPanel = new JPanel();
+	private final JLabel registeredEndpointsLabel = new JLabel("Registered EndPoints");
+	public ChatAppView() {
+		categoryInput.setToolTipText("Enter category here ");
+		categoryInput.setColumns(10);
+		chatRoomNameInput.setToolTipText("Enter chatroom name for creation here ");
+		chatRoomNameInput.setColumns(10);
+		serverNameInput.setToolTipText("Enter server name here ");
+		serverNameInput.setColumns(10);
+		usernameInput.setToolTipText("Set Username Here");
+		usernameInput.setColumns(10);
+		initGUI();
+	}
+	private void initGUI() {
+		controlPanel.setToolTipText("Control Panel for ChatApp");
+		
+		getContentPane().add(controlPanel, BorderLayout.NORTH);
+		controlPanel.setLayout(new GridLayout(0, 3, 0, 0));
+		panel_1.setToolTipText("Contains App Startup Components");
+		
+		controlPanel.add(panel_1);
+		panel_1.setLayout(new GridLayout(7, 0, 0, 0));
+		appStartUpLabel.setToolTipText("App Startup Label");
+		
+		panel_1.add(appStartUpLabel);
+		usernameLabel.setToolTipText("Username Label");
+		usernameLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 8));
+		
+		panel_1.add(usernameLabel);
+		
+		panel_1.add(usernameInput);
+		serverNameLabel.setToolTipText("Server Name label");
+		serverNameLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 8));
+		
+		panel_1.add(serverNameLabel);
+		
+		panel_1.add(serverNameInput);
+		startButton.setToolTipText("Click to start the app!");
+		
+		panel_1.add(startButton);
+		exitButton.setToolTipText("Click to exit and close ChatApp");
+		
+		panel_1.add(exitButton);
+		panel_2.setToolTipText("Panel for making ChatRoom");
+		
+		controlPanel.add(panel_2);
+		panel_2.setLayout(new GridLayout(3, 0, 0, 0));
+		makeChatRoomLabel.setToolTipText("Make ChatRoom Label");
+		
+		panel_2.add(makeChatRoomLabel);
+		
+		panel_2.add(chatRoomNameInput);
+		makeChatRoomButton.setToolTipText("Click to make ChatRoom! ");
+		
+		panel_2.add(makeChatRoomButton);
+//		panel_3.setToolTipText("Panel for holding Discovery Server GUI ");
+//		
+//		controlPanel.add(panel_3);
+//		panel_3.setLayout(new GridLayout(2, 2, 0, 0));
+//		remoteHostLabel.setToolTipText("Remote Hosts Label");
+//		
+//		panel_3.add(remoteHostLabel);
+//		discoveryPanel.setToolTipText("Panel for holding part of Discovery Server GUI");
+//		
+//		panel_3.add(discoveryPanel);
+//		discoveryPanel.setLayout(new GridLayout(1, 2, 0, 0));
+//		leftDiscoveryPanel.setToolTipText("Panel for holding the left part of Discovery Server ");
+//		
+//		discoveryPanel.add(leftDiscoveryPanel);
+//		leftDiscoveryPanel.setLayout(new GridLayout(5, 0, 0, 0));
+//		discoveryServerLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
+//		discoveryServerLabel.setToolTipText("Discovery Server Label");
+//		
+//		leftDiscoveryPanel.add(discoveryServerLabel);
+//		categoryLabel.setToolTipText("Category Label");
+//		categoryLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
+//		
+//		leftDiscoveryPanel.add(categoryLabel);
+//		
+//		leftDiscoveryPanel.add(categoryInput);
+//		watchOnlyCheckBox.setToolTipText("Check if want to Watch Only");
+//		
+//		leftDiscoveryPanel.add(watchOnlyCheckBox);
+//		connectButton.setToolTipText("Click to connect to selected chat");
+//		
+//		leftDiscoveryPanel.add(connectButton);
+//		rightDiscoveryPanel.setToolTipText("Panel holding the right part of the discovery server ");
+//		
+//		discoveryPanel.add(rightDiscoveryPanel);
+//		rightDiscoveryPanel.setLayout(new GridLayout(3, 0, 0, 0));
+//		registeredEndpointsLabel.setToolTipText("Registered EndPoints label");
+//		registeredEndpointsLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
+//		
+//		rightDiscoveryPanel.add(registeredEndpointsLabel);
+	}
+	
+	
+	
+	
+	
+	
+	
+
+}

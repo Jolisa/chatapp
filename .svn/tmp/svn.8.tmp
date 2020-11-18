@@ -1,0 +1,19 @@
+package jmb26_wmj1.chatapp.chatroom.view;
+
+public interface IChatRoomView2ModelAdapter {
+
+	
+	public void leaveRoom();
+	
+	public void sendText(String string);
+	
+	public void sendImage(String path);
+	
+	public void removeRoomfromList();
+
+	public void sendPoem(String text);
+	
+	
+	
+
+}

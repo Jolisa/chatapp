@@ -1,0 +1,29 @@
+package common.message.type;
+
+import common.IChatAppConnector;
+import common.message.IMessage;
+import provided.datapacket.DataPacketIDFactory;
+import provided.datapacket.IDataPacketID;
+
+/**
+ * Message type that users send when leaving the chatroom
+ * @author Group C
+ *
+ */
+public interface ILeaveMessage extends IMessage {
+	
+	/**
+	 * Returns ID of data type
+	 * @return data packet ID of data type
+	 */
+	public static IDataPacketID GetID() {
+		return DataPacketIDFactory.Singleton.makeID(ILeaveMessage.class);
+	}
+	
+	/**
+	 * Sends a default leaving message to the other users.
+	 * @param userStub stub of user that left chat room
+	 */
+	public void leave(IChatAppConnector userStub);
+	
+}

@@ -1,0 +1,40 @@
+package common.message.type.cmd;
+
+import common.AMessageCmd;
+import common.MessageCmd;
+import common.message.IMessage;
+import provided.datapacket.DataPacketIDFactory;
+import provided.datapacket.IDataPacketID;
+
+/**
+ * This is the message that a sender of a message would respond with if the recipient
+ * of a previous message did not know how to process that message. This command essentially
+ * allows the original sender to tell the original receiver how to process a message. This
+ * should be used with an ICmdToModelAdapter. 
+ * @author Group C
+ * @param <M> generic type of message
+ *
+ */
+public interface IAddCmdMessage<M extends IMessage> extends IMessage {
+	
+	/**
+	 * Returns ID of data type
+	 * @return data packet ID of data type
+	 */
+	public static IDataPacketID GetID() {
+		return DataPacketIDFactory.Singleton.makeID(IAddCmdMessage.class);
+	}
+	
+	/**
+	 * Gets the command of the unknown message type.
+	 * @return message command of the unknown message type
+	 */
+	public AMessageCmd getCommand();
+	
+	/**
+	 * Formally makes the command so that the user can use it to execute the message command.
+	 * @return formally made message command to execute
+	 */
+	public MessageCmd makeCmd();
+	
+}

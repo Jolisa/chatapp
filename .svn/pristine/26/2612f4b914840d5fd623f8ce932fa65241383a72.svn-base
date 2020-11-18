@@ -1,0 +1,22 @@
+/**
+ * 
+ */
+package jmb26_wmj1.chatapp.data;
+
+import common.message.type.ILeaveMessage;
+
+/**
+ * @author jolisabrown
+ *
+ */
+public class LeaveData implements ILeaveMessage{
+
+	/**
+	 * Serial UID 
+	 */
+	private static final long serialVersionUID = -3959296689137452574L;
+	
+	public LeaveData() {
+	}
+
+}

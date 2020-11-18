@@ -1,0 +1,635 @@
+
+
+package jmb26_wmj1.chatapp.client.model;
+
+import java.rmi.AccessException;
+import java.rmi.RemoteException;
+import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Hashtable;
+import java.util.List;
+import java.util.Set;
+import java.util.function.Consumer;
+
+import javax.swing.JPanel;
+
+import common.IChatAppConnector;
+import common.IChatAppReceiver;
+import common.IChatRoomConnector;
+import jmb26_wmj1.chatapp.client.controller.IMini2GuiAdapter;
+import jmb26_wmj1.chatapp.client.model.IModel2ViewAdapter;
+import jmb26_wmj1.chatapp.util.ChatAppConnector;
+import jmb26_wmj1.chatapp.util.ChatRoomConnector;
+import provided.discovery.IEndPointData;
+import provided.discovery.impl.model.DiscoveryConnector;
+import provided.discovery.impl.model.RemoteAPIStubFactory;
+import provided.rmiUtils.IRMIUtils;
+import provided.rmiUtils.IRMI_Defs;
+import provided.rmiUtils.RMIUtils;
+
+public class ClientModel {
+	
+	///////////////////////////////////////// trying stuff out 
+	
+	String ourName; 
+	
+	String serverName;
+	
+	///// separating discovery server and model 
+	
+	private DiscoveryConnector discoveryConnector; 
+	
+	
+	///////////////////////////////////////////////////////////////////// more stuff trying out 
+	
+//	private Consumer<String> outputCmd = new Consumer<String> () {
+//		@Override
+//		public void accept(String s) {
+//			model2ViewAdapter.accept(s + "\n"); 
+//		}
+//	};
+	
+	// stub to local user 
+	private IChatAppConnector localUserStub;
+	// stub to remote user 
+	private IChatAppConnector remoteUserStub;
+	
+	// our user stub 
+	private IChatAppConnector user; 
+	
+	private Registry localRegistry; 
+	
+	// set of connected user stubs --> use set or list??? 
+	private Set<IChatAppConnector> connectedUserStubs = new HashSet<IChatAppConnector> ();
+	
+	///// bound ports and names? 
+	
+	// local name of user 
+	public String LOCAL_USER_NAME = IChatAppConnector.BOUND_NAME;
+	
+	// remote name of user 
+	public String REMOTE_USER_NAME = IChatAppConnector.BOUND_NAME;
+	
+	// local port 
+	
+	public int LOCAL_RMI_PORT = IRMI_Defs.CLASS_SERVER_PORT_CLIENT; 
+	
+	
+	// remote port 
+	public int REMOTE_RMI_PORT = IRMI_Defs.CLASS_SERVER_PORT_SERVER;
+	
+	// user port 
+	
+	public int BOUND_PORT_USER = IRMI_Defs.STUB_PORT_SERVER;
+	
+	// port 
+	
+	public int BOUND_PORT_REP = IRMI_Defs.STUB_PORT_CLIENT;
+	
+	
+	//////////////////////////////////////////////////////////////////////
+	
+	//Our stub
+	
+	//IChatAppReceiver us; 
+	
+	//Our chat rooms 
+	
+	//List<IChatRoomConnector> ourRooms = new ArrayList<IChatRoomConnector>();
+	
+	
+	
+	//List<IChatRoomConnector> ourRooms = new ArrayList<IChatRoomConnector>();
+	
+	
+	//Hashtable<String, IMain2MiniAdapter> roomAdapters = new Hashtable<String, IMain2MiniAdapter>();
+
+	//private static final String BOUND_NAME = null;
+	
+	//private IRMIUtils rmiUtils;
+	IModel2ViewAdapter model2ViewAdapter;
+	
+	
+	
+	
+	private IRMIUtils rmiUtils = new RMIUtils((s)-> {
+		System.out.println("adapter accepted the string " + s);
+		model2ViewAdapter.accept(s);
+	});
+
+	
+	
+	/**
+	 * port for client class
+	 */
+	private int classServerPort = IRMI_Defs.CLASS_SERVER_PORT_CLIENT;
+	
+	/**
+	 * port for stub of client
+	 */
+	private int stubPort = IRMI_Defs.STUB_PORT_CLIENT;
+	
+	
+	
+	///the new "advanced" attributes
+	 private DiscoveryConnector discConn;
+	 private RemoteAPIStubFactory<IChatAppConnector> remoteAPIStubFac;  // Substitute the API's connection-level Remote interface for "IConnectionEntity"
+
+	
+	 
+	 
+	 
+	 
+	 public ClientModel(IModel2ViewAdapter iModel2ViewAdapter) {
+		// TODO Auto-generated constructor stub
+		this.model2ViewAdapter = iModel2ViewAdapter;
+	}
+
+	
+	
+		/**
+		 * Get the internal IRMIUtils instance being used.    The discovery model start method needs the main model's IRMIUtils.
+		 * ONLY call the method AFTER the model, i.e. the internal IRMIUtils, has been started!
+		 * @return The internal IRMIUtils instance
+		 */
+		public IRMIUtils getRMIUtils() {
+			return this.rmiUtils;
+		}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//		/**
+//		 * Manual connection to a Registry to retrieve and process a stub from it.
+//		 * Connects to the Registry at the given address, retrieves a stub from it, 
+//		 * then delegates to connectToStub() to process the stub.
+//		 * @param remoteRegistryIPAddr  The IP address of the remote Registry
+//		 * @return A status message string
+//		 */
+//		public String connectTo(String remoteRegistryIPAddr) {
+//			try {
+//				model2ViewAdapter.accept("[MainModel.connectTo()] Locating registry at " + remoteRegistryIPAddr+ "...");
+//				Registry registry = rmiUtils.getRemoteRegistry(remoteRegistryIPAddr);
+//				model2ViewAdapter.accept("[MainModel.connectTo()] Found registry: " + registry );
+//				IChatAppConnector remoteStub = (IChatAppConnector) registry.lookup(BOUND_NAME);   // Replace "IRemoteStubType" and "BOUND_NAME" with the appropriate values for the application  
+//				model2ViewAdapter.accept("[MainModel.connectTo()] Found remote stub: " + remoteStub);
+//
+//				connectToStub(remoteStub);
+//
+//			} catch (Exception e) {
+//				String errMsg = "[ERROR!!!] [MainModel.connectTo()] Exception connecting to " + remoteRegistryIPAddr+ ": " + e;
+//				System.err.println(errMsg);  // to show error msg with stack trace on stderr
+//				e.printStackTrace();
+//				model2ViewAdapter.accept(errMsg);
+//
+//				return "No connection established!";
+//			}
+//			return "Connection to " + remoteRegistryIPAddr + " established!";
+//		}
+
+//////////////////////////////////////////////////////////////////////////////////////// remake connectTo for manual test 		
+		
+
+		
+		/**
+		 * Manual connection to a Registry to retrieve and process a stub from it.
+		 * Connects to the Registry at the given address, retrieves a stub from it, 
+		 * then delegates to connectToStub() to process the stub.
+		 * @param remoteRegistryIPAddr  The IP address of the remote Registry
+		 * @return A status message string
+		 */
+		public IChatAppConnector connectTo(String remoteRegistryIPAddr) {
+			try {
+				model2ViewAdapter.accept("[MainModel.connectTo()] Locating registry at " + remoteRegistryIPAddr+ "...");
+				Registry registry = rmiUtils.getRemoteRegistry(remoteRegistryIPAddr);
+				model2ViewAdapter.accept("[MainModel.connectTo()] Found registry: " + registry );
+				IChatAppConnector remoteStub = (IChatAppConnector) registry.lookup(REMOTE_USER_NAME);   // Replace "IRemoteStubType" and "BOUND_NAME" with the appropriate values for the application  
+				model2ViewAdapter.accept("[MainModel.connectTo()] Found remote stub: " + remoteStub);
+
+				//connectToStub(remoteStub);
+				
+				connectedUserStubs.add(remoteStub);
+				model2ViewAdapter.accept("[MainModel] successfully connected to " + remoteStub + "!");
+
+				// auto connect 
+				remoteStub.autoConnect(localUserStub);
+				model2ViewAdapter.accept("[MainModel]" + remoteRegistryIPAddr + "successfully connected back");
+				
+				return remoteStub; 
+				
+				
+			} catch (Exception e) {
+				String errMsg = "[ERROR!!!] [MainModel.connectTo()] Exception connecting to " + remoteRegistryIPAddr+ ": " + e;
+				System.err.println(errMsg);  // to show error msg with stack trace on stderr
+				e.printStackTrace();
+				model2ViewAdapter.accept(errMsg);
+
+				//return "No connection established!";
+				return null; 
+			}
+			//return "Connection to " + remoteRegistryIPAddr + " established!";
+		}
+		
+		
+		/**
+		 * Process the newly acquired stub.  This is the method that the discovery model uses in "Client" or "Client + Server" usage modes 
+		 * @param stub The newly acquired stub 
+		 */
+//		public IChatAppConnector connectToStub(IChatAppConnector remoteStub) {    // Replace "IRemoteStubType" with the appropriate for the application, i.e. the Remote type of stub in Registry)  
+		public void connectToStub(IChatAppConnector remoteStub) {
+			
+			connectedUserStubs.add(remoteStub);
+			model2ViewAdapter.accept("[MainModel] successfully connected to " + remoteStub + "!");
+
+			// auto connect 
+			try {
+				remoteStub.autoConnect(localUserStub);
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			model2ViewAdapter.accept("[MainModel] successfully connected back");
+			
+			//return remoteStub; 
+			
+		}
+		
+		
+		
+		
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////		
+//		/**
+//		 * Process the newly acquired stub.  This is the method that the discovery model uses in "Client" or "Client + Server" usage modes 
+//		 * @param stub The newly acquired stub 
+//		 */
+//		public void connectToStub(IChatAppConnector stub) {    // Replace "IRemoteStubType" with the appropriate for the application, i.e. the Remote type of stub in Registry)  
+//			// -- processing code elided ---
+//			//everything to be done post connection
+//			//request rooms
+//			/*
+//			Registry registry = rmiUtils.getLocalRegistry();
+//			
+//			try {
+//				registry.rebind(BOUND_NAME, stub);
+//			} catch (AccessException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			} catch (RemoteException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}*/
+//			
+//			//get all the rooms belonging to this IChatAppConnector
+//			
+//			try {
+//				List<IChatRoomConnector> friendsRooms = stub.request();
+//				//put all of these room options in view dropdown
+//				model2ViewAdapter.addNewPotentialRooms(friendsRooms);
+//			} catch (RemoteException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//			//implement autoconnect back as well...
+//			//share your rooms with the new IChatAppConnector
+//			
+//			
+//		}
+		
+/////////////////////////////////////////////////////////////////////////////////////////
+//		////// split up discovery server start and model start 
+//		public void startDiscoveryConnection(String username) {
+//			rmiUtils.startRMI(IRMI_Defs.CLASS_SERVER_PORT_SERVER);
+//			
+//			try {
+//				discoveryConnector = new DiscoveryConnector(rmiUtils, username, IChatAppConnector.BOUND_NAME);
+//			}
+//			
+//		}
+	
+	
+	
+	
+	//////////////////////////////////////////////////////////////////////////////////////
+	/**
+	 * DUMMY STUB - to be implemented by API
+	 * @return
+	 */
+	private String getUserName() {
+		//return this.username;
+		return "Wilson";
+	}
+	
+	private String getBoundName() {
+		//return BOUNDNAME variable
+		return "BOUNDNAME";
+		
+	}
+	
+	////////////////////////////////////////////////// trying to change settings of discovery server... 
+//	private String getOurName() {
+//		return this.ourName;
+//	}
+//	
+//	private void setOurName(String name) {
+//		this.ourName = name;
+//		
+//	}
+//	
+//	private String getServerName() {
+//		return this.serverName;
+//	}
+//	
+//	private void setServerName(String name) {
+//		this.serverName = name;
+//		
+//	}
+	//////////////////////////////////////////////////////////////////////////////////////
+
+
+
+	public void start() {
+		// TODO Auto-generated method stub
+		//rmiUtils.startRMI(IRMI_Defs.CLASS_SERVER_PORT_SERVER);
+		
+		
+		rmiUtils.startRMI(LOCAL_RMI_PORT);
+		
+		try {
+			
+		
+		
+		
+		///////////////////////////////////////////
+		
+		localRegistry = rmiUtils.getLocalRegistry();
+		
+		user = new ChatAppConnector("Wilson & Jolisa", model2ViewAdapter); 
+		
+		
+		localUserStub = (IChatAppConnector) UnicastRemoteObject.exportObject(user, BOUND_PORT_USER);
+		((ChatAppConnector) user).setUserStub(localUserStub);
+		
+		localRegistry.rebind(LOCAL_USER_NAME,  localUserStub);
+		
+		System.out.println("DO WE GET THIWS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+		System.out.println(localUserStub);
+		
+		
+		model2ViewAdapter.accept("[MainModel] successfully started");
+		
+		
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+
+	}
+
+	public void stop() {
+		// TODO Auto-generated method stub
+		
+		model2ViewAdapter.accept("[Client]: Attempting to quit...\n");
+		try {
+			rmiUtils.stopRMI();
+		} catch (Exception e) {
+			model2ViewAdapter.accept("[Client Error]: RMI unable to quit.\n");
+		}
+		System.exit(0);
+		
+		
+	}
+	
+	// returned this from the make chatroom method below 
+//	public void createJoinedRoom(String roomName) {
+//		// TODO Auto-generated method stub
+//		
+//		
+//		List<IChatAppReceiver> currentMembers = new ArrayList<IChatAppReceiver>();
+//		List<IChatAppReceiver> currentMembers = new ArrayList<IChatAppReceiver>();
+//		currentMembers.add(us);
+//		Chatroom chatroom = new Chatroom(name, currentMembers, miniMvcAdapter);
+////		/*Chatroom chatroom = new Chatroom(name, currentMembers, new IRoom2GuiAdapter() {
+////			@Override
+////			public JPanel createView() {
+////				//how to set the JPanel from within this method??
+////				return new JPanel();
+////				
+////				
+////			}
+////		});*/
+//		
+//		//instantiates the mini controller for use in chatroom management
+//		//main model calls a factory method on main model2view adapter to create a new
+//		//mini controller
+//		miniMvcAdapter = model2ViewAdapter.createMiniController(chatroom);
+//		//adds room  to internal log of available rooms
+//		addRoom(chatroom);
+//		
+//		Chatroom chatroom = new Chatroom(roomName, currentMembers);
+//		//pass the newly created chatroom and our stub to the mini controller
+//		model2ViewAdapter.makeMiniMVC(chatroom, us);
+//		
+//		
+//		
+//		
+//		
+//		
+//	}
+	
+	
+	/**
+	 * creates a new chatroom
+	 * @param roomName name identifier corresponding to chatroom
+	 * @return 
+	 */
+	//public IChatRoomConnector createNewRoom(String roomName) {
+	public IChatRoomConnector createNewRoom(String roomName) {
+//		/////////////////////////////////////////////////////////////////////////////
+//		//create a new room that has only us as initial participants
+//		List<IChatAppReceiver> currentMembers = new ArrayList<IChatAppReceiver>();
+//		currentMembers.add(us);
+//		Chatroom chatroom = new Chatroom(roomName, currentMembers);
+//		//create adapter for new room
+//		//How do we get our own stub to pass into the constructor for the new room?? Instead of passing null?
+//		IMain2MiniAdapter main2MiniAdapter = model2ViewAdapter.makeMiniMVC(chatroom,(IChatAppConnector) null);
+//		chatroom.setMain2MiniAdapter(main2MiniAdapter);
+//		
+//		
+//		//add newly created room to our log of room participations
+//		ourRooms.add(chatroom);
+//		//ourRooms.add(main2MiniAdapter.getRoom());
+//		
+//		////////////////////////////////////////////////////////////////////////
+		
+		ChatRoomConnector chatroom = new ChatRoomConnector(roomName); 
+		IMain2MiniAdapter m2mAdpt = model2ViewAdapter.makeMiniMVC(chatroom, localUserStub);
+		//assign adapter to the rooms Main2MiniAdapter value
+		//roomAdapters.put(roomName, m2mAdpt);
+		//chatroom.setMain2MiniAdapter(m2mAdpt);
+		
+		//add to our list or rooms
+		//ourRooms.add((IChatRoomConnector) chatroom);
+		//return the created jpanel to the view to be installed
+		
+		return m2mAdpt.getMiniRoom();
+		
+	}
+	
+	
+	
+	////////////////////// additional methods we think model needs for now 
+	
+//	// create room 
+//	public void createChatRoom(String name) {
+//		
+//		
+//		List<IChatAppReceiver> currentMembers = new ArrayList<IChatAppReceiver>();
+//		currentMembers.add(us);
+//		Chatroom chatroom = new Chatroom(name, currentMembers, miniMvcAdapter);
+////		/*Chatroom chatroom = new Chatroom(name, currentMembers, new IRoom2GuiAdapter() {
+////			@Override
+////			public JPanel createView() {
+////				//how to set the JPanel from within this method??
+////				return new JPanel();
+////				
+////				
+////			}
+////		});*/
+//		
+//		//instantiates the mini controller for use in chatroom management
+//		//main model calls a factory method on main model2view adapter to create a new
+//		//mini controller
+//		miniMvcAdapter = model2ViewAdapter.createMiniController(chatroom);
+//		//adds room  to internal log of available rooms
+//		addRoom(chatroom);
+//		
+//		
+//	}
+	
+	
+	
+	
+	// join chat room to connect to all the stubs in the chat room and obtain all stubs in room 
+	// this is where all the actual stub connections takes place; get others and send yours 
+	// can add our room to the list at the end because now we are connected 
+	// 
+	public void joinChatRoom(IChatRoomConnector chatroom) throws RemoteException{
+		
+//		List<IChatAppReceiver> members = chatroom.getAllReceivers();
+//		
+//		// Send our stub to everyone somehow...
+//		for (IChatAppReceiver user: members) {
+//			
+//		}
+//		
+//		
+//		addRoom(chatroom);
+
+
+		ChatRoomConnector roomCopy = new ChatRoomConnector(chatroom.getChatRoomName());
+		
+		
+		
+		// add all exisiting members to this room
+		for (IChatAppReceiver repStub: chatroom.getAllReceivers()) {
+			//roomCopy.addRep(repStub);
+			roomCopy.getAllReceivers().add(repStub);
+		}
+		//add newly joined room to our record of room participations
+		//ourRooms.add(roomCopy);
+		
+		
+		
+		// tell everybody to add you
+		IMain2MiniAdapter m2mAdpt = model2ViewAdapter.makeMiniMVC(roomCopy, localUserStub);
+		
+		//assign adapter to the rooms Main2MiniAdapter value and update records
+		// 
+		//roomAdapters.put(chatroom.getChatRoomName(), m2mAdpt);
+		
+		//model2ViewAdapter.addChatroom(m2mAdpt.getMiniRoom());
+		model2ViewAdapter.addChatroom(roomCopy);
+		
+		
+		
+	}
+	
+	// leave room 
+	public void leaveChatRoom(IChatRoomConnector chatroom) {
+		
+		
+	}
+	
+	// add room for user 
+	public void addRoom(IChatRoomConnector chatroom) {
+		
+		//ourRooms.add(chatroom);
+		try {
+			user.request().add(chatroom);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+//	// return list of chat rooms we are in 
+//	public List<Chatroom> getChatRooms(Chatroom chatroom) {
+//			
+//		return ourRooms;
+//			
+//	}
+	
+	// remove room from user
+	public void removeRoom(IChatRoomConnector chatroom) {
+		
+		//ourRooms.remove(chatroom);
+		try {
+			user.request().remove(chatroom);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	// add user stub to people in room 
+	public void addUser(IChatAppConnector userStub) {
+		connectedUserStubs.add(userStub);
+	}
+	
+	// Invite user to room 
+	public void inviteToRoom(IChatAppConnector stub, IChatRoomConnector room) {
+		try {
+			stub.invite(room);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+
+//
+//	public void updateRoomView(String roomName, String text) {
+//		IMain2MiniAdapter m2madpt = roomAdapters.get(roomName);
+//		//get the panel for the room itself and update it using the adapter
+//		m2madpt.updateRoomView(text);
+//		
+//	}
+
+
+//
+//	public List<IChatRoomConnector> requestRooms(IChatAppConnector host) {
+//		try {
+//			return host.request();
+//		} catch (RemoteException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		return null;
+//	}	 
+
+
+
+}

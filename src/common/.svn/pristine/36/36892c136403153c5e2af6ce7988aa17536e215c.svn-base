@@ -1,0 +1,11 @@
+package common;
+
+/**
+ * Empty abstract class used to define a concrete implementation of a message
+ * command. This class is used in AMessageCmd for typing purposes
+ * @author Group C
+ *
+ */
+public abstract class MessageCmd {
+
+}

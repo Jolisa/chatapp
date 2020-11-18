@@ -1,0 +1,29 @@
+/**
+ * 
+ */
+package jmb26_wmj1.chatapp.data;
+
+import common.AMessageAlgoCmd;
+import common.message.IMessage;
+import common.message.type.cmd.IAddCmdMessage;
+import provided.datapacket.IDataPacketID;
+
+/**
+ * @author jolisabrown
+ *
+ */
+public class AddCmdMessage implements IAddCmdMessage {
+
+	@Override
+	public IDataPacketID getUnknownID() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public AMessageAlgoCmd<IMessage> getUnknownAlgoCmd() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

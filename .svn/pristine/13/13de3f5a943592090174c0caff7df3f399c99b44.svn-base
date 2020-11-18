@@ -1,0 +1,34 @@
+package jmb26_wmj1.chatapp.client.model;
+
+import java.awt.Component;
+import java.util.function.Supplier;
+
+import javax.swing.JPanel;
+
+import common.IChatRoomConnector;
+
+/**
+ *  Adapter from the main to the mini MVC 
+ * @author wj
+ *
+ */
+public interface IMain2MiniAdapter {
+	
+	public JPanel getMiniRoomView();
+
+	public IChatRoomConnector getMiniRoom(); 
+	
+	// add text and add component??
+	
+	public void appendString(String text);
+	
+	public void addComponent(Supplier<Component> compFac);
+
+	//the return would be a JPanel if we then have to reinstall the update to gui, otherwise void 
+	//JPanel updateRoomView(String text);
+
+	void updateRoomView(String text);
+	
+	
+	
+}

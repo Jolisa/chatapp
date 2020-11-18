@@ -1,0 +1,30 @@
+/**
+ * 
+ */
+package jmb26_wmj1.chatapp.client.model;
+
+import common.IChatAppConnector;
+import common.IChatRoomConnector;
+import jmb26_wmj1.chatapp.client.controller.IMini2GuiAdapter;
+
+/**
+ * @author jolisabrown
+ *
+ */
+public interface IModel2ViewAdapter {
+
+	public void accept(String s);
+	
+	public void startDiscoveryPanel();
+	
+	public void createMiniController();
+	
+	//why can't createMiniController have a return type?? why does it need to be void?
+
+	//public IMini2GuiAdapter createMiniController(Chatroom chatroom) {};
+	
+	//////////////////////////////////
+	
+	public IMain2MiniAdapter makeMiniMVC(IChatRoomConnector room, IChatAppConnector user);
+
+}

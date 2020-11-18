@@ -1,0 +1,38 @@
+/**
+ * 
+ */
+package jmb26_wmj1.chatapp.data;
+
+import common.AMessageAlgoCmd;
+import common.IChatAppReceiver;
+import common.IChatRoomConnector;
+import jmb26_wmj1.chatapp.chatroom.model.IChatRoomModel2ViewAdapter;
+import provided.datapacket.DataPacket;
+import provided.datapacket.IDataPacketID;
+
+/**
+ * @author jolisabrown
+ *
+ */
+public class LeaveDataCmd extends AMessageAlgoCmd<LeaveData> {
+
+	
+	private IChatRoomConnector room;
+	
+	public LeaveDataCmd(IChatRoomConnector room) {
+			
+			this.room = room;		
+			
+	}
+	
+	
+	@Override
+	public Void apply(IDataPacketID index, DataPacket<LeaveData, IChatAppReceiver> host, Void... params) {
+		
+		
+		room.getAllReceivers().remove(host.getSender());
+		
+		return null;
+	}
+
+}

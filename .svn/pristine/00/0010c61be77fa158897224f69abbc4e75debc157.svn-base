@@ -1,0 +1,21 @@
+package jmb26_wmj1.chatapp.chatroom.model;
+
+public class IMini2MainAdapter {
+
+	/**
+	 * Installs prior created room view in tabbed Pane when pane is initially clicked
+	 * 
+	 **/
+	public void setRoomView() {
+		// TODO Auto-generated method stub
+		
+	}
+	/**
+	 * Updates view of the currently selected pane
+	 */
+	public void updateRoomView() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

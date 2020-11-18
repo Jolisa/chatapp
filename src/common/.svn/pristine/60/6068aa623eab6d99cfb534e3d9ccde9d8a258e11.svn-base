@@ -1,0 +1,18 @@
+package common;
+
+import provided.datapacket.IDataPacketID;
+
+/**
+ * Stores all the commands that a user has processed.
+ * @author Group C
+ *
+ */
+public abstract class AMessageCmd {
+
+	/**
+	 * Runs the command with the respective id.
+	 * @param id ID of data packet
+	 * @param cmd concrete implementation of the command to execute
+	 */
+	public abstract void execute(IDataPacketID id, MessageCmd cmd);
+}

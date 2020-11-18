@@ -1,0 +1,13 @@
+package common.message;
+
+import provided.datapacket.IDataPacketData;
+
+/**
+ * Interface for messages used for type narrowing purposes. This is used to 
+ * define well known types.
+ * @author Group C
+ *
+ */
+public interface IMessage extends IDataPacketData {
+	
+}

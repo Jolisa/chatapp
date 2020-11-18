@@ -1,0 +1,36 @@
+package common;
+
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+
+import common.message.IMessage;
+
+/**
+ * An entity that has inbound and outbound message processing. This can be used
+ * to create a "receiver" in a chat room where a receiver is simply a remote 
+ * entity that can send and receive messages and commands. Additionally, this 
+ * interface extends Remote for you to make it as easy as possible to create
+ * stubs or proxies.
+ * @author Group C
+ *
+ */
+public interface IChatAppReceiver extends Remote {
+	
+	/**
+	 * Returns user name of receiver. This method is necessary since one can
+	 * be in a room with someone they did not originally connect to through the
+	 * discovery server. Assume a name is invariant.
+	 * @return user name of receiver
+	 * @throws RemoteException remote exception
+	 */
+	public String getName() throws RemoteException;
+	
+	/**
+	 * Receives messages sent from other users.
+	 * @param message message received from other user. In this case, they type
+	 * of message that must be sent is an IMessage and the sender must be an IChatAppReceiver.
+	 * @throws RemoteException remote exception
+	 */
+	public void receiveMessage(ChatAppDataPacket<? extends IMessage> message) throws RemoteException;
+
+}

@@ -1,0 +1,40 @@
+package jmb26_wmj1.chatapp.data;
+
+import java.awt.Component;
+
+import javax.swing.ImageIcon;
+
+import common.message.IMessage;
+import provided.datapacket.DataPacketIDFactory;
+import provided.datapacket.IDataPacketID;
+
+public interface IImageMessage extends IMessage {
+	
+	
+	/**
+	 * @return A unique IDataPacketID based on the class
+	 */
+	public static IDataPacketID GetID() {
+		return DataPacketIDFactory.Singleton.makeID(IImageMessage.class);
+	}
+	
+	@Override
+	public default IDataPacketID getID() {
+		return IImageMessage.GetID();
+	}
+	
+	/**
+	 * @return the ImageIcon.
+	 */
+	public ImageIcon getImageComponent();
+	///////////////////////////////////////////////////////////////
+	
+	/**
+	 * @return the ImageIcon title.
+	 */
+	public String getImageComponentTitle();
+	
+	
+	
+
+}

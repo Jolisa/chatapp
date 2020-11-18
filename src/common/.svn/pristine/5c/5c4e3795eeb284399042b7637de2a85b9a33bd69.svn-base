@@ -1,0 +1,30 @@
+package common.message.type;
+
+import common.message.IMessage;
+import provided.datapacket.DataPacketIDFactory;
+import provided.datapacket.IDataPacketID;
+
+/**
+ * Message type that users send to ping the presence of others in the room.
+ * This is mainly used to prevent stale data issues.
+ * @author Group C
+ * @param <M> generic type of message
+ *
+ */
+public interface IPingMessage<M extends IMessage> extends IMessage {
+	
+	/**
+	 * Returns ID of data type
+	 * @return data packet ID of data type
+	 */
+	public static IDataPacketID GetID() {
+		return DataPacketIDFactory.Singleton.makeID(IPingMessage.class);
+	}
+	
+	/**
+	 * Sends a default ping message to the other users.
+	 * @return default message to ping presence of someone else in room
+	 */
+	public IMessage ping();
+	
+}

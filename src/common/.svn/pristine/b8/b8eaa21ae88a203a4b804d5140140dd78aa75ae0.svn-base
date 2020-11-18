@@ -1,0 +1,22 @@
+package common.message.type.cmd;
+
+import common.IChatAppUser;
+import common.message.IMessage;
+import provided.datapacket.IDataPacketID;
+
+/**
+ * Defines a message type that allows one user to request
+ * a command from a remote user.
+ * @author Group C
+ *
+ */
+public interface IRequestCmdMessage<M extends IMessage> extends IAddCmdMessage<M> {
+
+	/**
+	 * Requests for the proper processing command from the user that sent the message.
+	 * @param user user who sent message
+	 * @param id id of data packet
+	 * @return result of executing command
+	 */
+	M requestCmd(IChatAppUser user, IDataPacketID id);
+}

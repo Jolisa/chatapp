@@ -1,0 +1,13 @@
+package common.message;
+
+import provided.datapacket.IDataPacketData;
+
+/**
+ * Super class/interface for messages, wrapper so that all message processing is 
+ * under an overarching message interface.
+ * @author Group C
+ *
+ */
+public interface IMessage extends IDataPacketData {
+	
+}

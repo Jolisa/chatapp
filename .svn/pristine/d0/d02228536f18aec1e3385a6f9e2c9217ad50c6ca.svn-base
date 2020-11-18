@@ -1,0 +1,87 @@
+package jmb26_wmj1.chatapp.data;
+import common.AMessageAlgoCmd;
+import common.ChatAppDataPacket;
+import common.IChatAppReceiver;
+import common.message.IMessage;
+import common.message.type.error.IRejectMessage;
+import jmb26_wmj1.chatapp.data.*;
+import provided.datapacket.IDataPacketID;
+
+
+public class RejectMessage implements IRejectMessage {
+	
+	
+	
+	
+   /**
+	 * 
+	 */
+	private static final long serialVersionUID = 4389790120296152169L;
+
+//	CmdToModelAdapter adpt;
+//	String error;
+//	ChatAppDataPacket packet;
+//	
+//	
+//	public ErrorMessage(CmdToModelAdapter _adpt, ChatAppDataPacket _packet,String _error) {
+//		this.adpt = _adpt;
+//		this.error = _error;
+//		this.packet = _packet;
+//	}
+//	
+//	@Override
+//	public ChatAppDataPacket<? extends IMessage> getErrorMessage() {
+//		// TODO Auto-generated method stub
+//		
+//		return packet;
+//	}
+//
+//	@Override
+//	public String getErrorString() {
+//		// TODO Auto-generated method stub
+//		return error;
+//	}
+
+	/**
+	 * Packet causing error 
+	 *
+	 */
+	 ChatAppDataPacket<? extends IMessage> packet;
+	 
+	 /**
+	 * Sender of the message
+	 */
+	IChatAppReceiver sender;
+	/**
+	 * Well known message type that caused error 
+	 */
+	AMessageAlgoCmd<?> msg; 
+	
+	
+	
+	/**
+	 * Constructor
+	 * @param <T> -- T type
+	 * @param sender Member that asks for a request 
+	 * @param id ID of the well known type
+	 */
+	public <T> RejectMessage(IChatAppReceiver sender, AMessageAlgoCmd<?> message, ChatAppDataPacket<? extends IMessage> datapacket) {
+		this.sender = sender;
+		this.msg = message;
+		this.packet = datapacket; 
+	}
+	
+
+	@Override
+	public ChatAppDataPacket<? extends IMessage> getErrorMessage() {
+		// TODO Auto-generated method stub
+		return packet;
+	}
+
+	@Override
+	public String getErrorString() {
+		// TODO Auto-generated method stub
+		return sender.toString() + " has sent a well known message type of " + msg.toString();
+	}
+
+}

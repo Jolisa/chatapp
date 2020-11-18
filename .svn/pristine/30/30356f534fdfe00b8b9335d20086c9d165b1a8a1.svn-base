@@ -1,0 +1,39 @@
+/**
+ * 
+ */
+package jmb26_wmj1.chatapp.data;
+
+import common.IChatAppConnector;
+import common.IChatAppReceiver;
+import common.message.IMessage;
+import common.message.type.IJoinMessage;
+import provided.datapacket.DataPacket;
+import provided.datapacket.IDataPacketID;
+
+/**
+ * @author jolisabrown
+ *
+ */
+public class JoinData<T, S> implements IJoinMessage {
+	DataPacket packet;
+	
+
+	public JoinData(Object data, Object stub) {
+		
+		this.packet = DataPacket(data, stub);
+	}
+	
+	@Override
+	public IDataPacketID getID() {
+		//super.GetID();
+		
+		return null;
+	}
+
+	@Override
+	public IChatAppReceiver connect() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

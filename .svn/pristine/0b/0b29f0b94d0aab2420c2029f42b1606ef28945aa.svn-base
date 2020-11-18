@@ -1,0 +1,58 @@
+/**
+ * 
+ */
+package jmb26_wmj1.chatapp.data;
+
+import java.awt.Component;
+import java.util.function.Supplier;
+
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import common.AMessageAlgoCmd;
+import common.ChatAppDataPacket;
+import provided.datapacket.IDataPacketID;
+
+/**
+ * @author wj
+ *
+ */
+public class ImageCmd extends AMessageAlgoCmd<IImageMessage> {
+
+	/**
+	 * Generated ID 
+	 */
+	private static final long serialVersionUID = 4737992611686636306L;
+	
+	/**
+	 * Constructor 
+	 */
+	
+	public ImageCmd() {
+		
+	}
+
+	@Override
+	public Void apply(IDataPacketID index, ChatAppDataPacket<IImageMessage> host, Void... params) {
+		// TODO Auto-generated method stub
+		//this.c2mAdapter.displayComponent(new Supplier<Component>() {
+		this.c2mAdapter.displayComponent(new Supplier<JComponent>() {
+			
+			@Override
+			public JComponent get() {
+				return (JComponent) host.getData().getImageComponent();
+			}
+			
+		}, "image");
+		return null; 
+	}
+		
+//		@Override
+//		public void displayComponent(Supplier<JComponent> compFact) {
+//			
+//		}
+	
+	
+
+}

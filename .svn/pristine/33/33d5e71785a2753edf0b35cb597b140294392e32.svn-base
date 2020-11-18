@@ -1,0 +1,56 @@
+/**
+ * 
+ */
+package jmb26_wmj1.chatapp.data;
+
+import java.rmi.RemoteException;
+
+import common.AMessageAlgoCmd;
+import common.ChatAppDataPacket;
+import common.message.type.IStringMessage;
+import jmb26_wmj1.chatapp.chatroom.model.IChatRoomModel2ViewAdapter;
+import provided.datapacket.IDataPacketID;
+
+/**
+ * @author jolisabrown
+ *
+ */
+public class StringDataCmd extends AMessageAlgoCmd<IStringMessage> {
+
+	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4999419830544749689L;
+	
+	/**
+	 * adapter for model to view
+	 */
+	private IChatRoomModel2ViewAdapter _m2vAdpt; 
+	
+	
+	/**
+	 * constructor for string data command
+	 * @param m2vAdpt
+	 */
+	public StringDataCmd(IChatRoomModel2ViewAdapter m2vAdpt) {
+		this._m2vAdpt = m2vAdpt; 
+	}
+	
+
+
+
+	@Override
+	public Void apply(IDataPacketID index, ChatAppDataPacket<IStringMessage> host, Void... params) {
+		// TODO Auto-generated method stub
+		try {
+			this._m2vAdpt.appendString(host.getSender().getName() + ": " + host.getData().getString());
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+}

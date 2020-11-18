@@ -1,0 +1,27 @@
+package jmb26_wmj1.chatapp.chatroom.model;
+
+import common.IChatRoomConnector;
+
+public interface IMini2MainAdapter {
+
+	/**
+	 * Installs prior created room view in tabbed Pane when pane is initially clicked
+	 * 
+	 **/
+	public void setRoomView();
+	/**
+	 * Updates view of the currently selected pane
+	 */
+	public void updateRoomView();
+	
+	//////////////////////////////////////////////////////
+	
+	public void removeRoomFromMainView(IChatRoomConnector room);
+	
+	public void addRoom2User(IChatRoomConnector room); 
+	
+	public void removeRoom4User(IChatRoomConnector room); 
+	
+	public void removeRoomFromMainList(IChatRoomConnector room); 
+
+}

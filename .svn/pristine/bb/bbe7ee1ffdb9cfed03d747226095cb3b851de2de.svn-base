@@ -1,0 +1,304 @@
+/**
+ * 
+ */
+package jmb26_wmj1.chatapp.client.controller;
+
+import java.awt.EventQueue;
+import java.util.function.Consumer;
+
+import javax.swing.JPanel;
+
+import jmb26_wmj1.chatapp.client.model.Chatroom;
+import jmb26_wmj1.chatapp.client.model.ClientModel;
+import jmb26_wmj1.chatapp.client.model.IModel2ViewAdapter;
+import jmb26_wmj1.chatapp.client.view.ClientView;
+import provided.compute.IRemoteTaskViewAdapter;
+import provided.discovery.IEndPointData;
+import provided.discovery.impl.model.DiscoveryModel;
+import provided.discovery.impl.model.DiscoveryModelWatchOnly;
+import provided.discovery.impl.model.IDiscoveryModelToViewAdapter;
+import provided.discovery.impl.view.DiscoveryPanel;
+import provided.discovery.impl.view.IDiscoveryPanelAdapter;
+import jmb26_wmj1.chatapp.client.view.IView2ModelAdapter;
+import common.*;
+import engine.engineModel.EngineICompute;
+import engine.engineModel.EngineModel;
+import engine.engineModel.IEngineAdapter;
+
+/**
+ * @author wj
+ *
+ */
+public class ClientController {
+	
+	
+	
+	/**
+	 * The Discovery server UI panel for the view
+	 */
+	private DiscoveryPanel<IEndPointData> discPnl;
+	
+	/**
+	 * A self-contained model to handle the discovery server.   MUST be started AFTER the main model as it needs the IRMIUtils from the main model! 
+	 */
+	private DiscoveryModel<IChatAppConnector> discModel;  // Replace "IRemoteStubType" with the appropriate for the application, i.e. the Remote type of stub in Registry)  
+	/**
+	 * An instance of the ClientModel class
+	 */
+	private ClientModel model; 
+	/**
+	 * An instance of the ClientView class
+	 */
+	private ClientView view; 
+	/**
+	 * Controller connecting client model to view
+	 */
+	/**
+	 * Constructor of the class.   Instantiates and connects the model and the view plus the discovery panel and model.
+	 */
+	
+	
+	
+	/**
+	 * Constructor of the class.   Instantiates and connects the model and the view plus the discovery panel and model.
+	 */
+	public ClientController() {
+		
+		discPnl = new DiscoveryPanel<IEndPointData>( (IDiscoveryPanelAdapter<IEndPointData>) new IDiscoveryPanelAdapter<IEndPointData>() {
+
+			/**
+			 * watchOnly is ignored b/c discovery model configured for watchOnly = true
+			 */
+			@Override
+			public void connectToDiscoveryServer(String category, boolean watchOnly, Consumer<Iterable<IEndPointData>> endPtsUpdateFn) {
+				// Ask the discovery model to connect to the discovery server on the given category and use the given updateFn to update the endpoints list in the discovery panel.
+				discModel.connectToDiscoveryServer(category, endPtsUpdateFn);
+			}
+
+			@Override
+			public void connectToEndPoint(IEndPointData selectedEndPt) {
+				// Ask the discovery model to obtain a stub from a remote Registry using the info from the given endpoint 
+				discModel.connectToEndPoint(selectedEndPt);
+			}
+			
+		}, true, true);  // "Client + Server" usage mode
+		
+		discModel = new DiscoveryModel<IChatAppConnector>( new IDiscoveryModelToViewAdapter<IChatAppConnector>() {
+
+			@Override
+			public void addStub(IChatAppConnector stub) {
+				model.connectToStub(stub);   // Give the stub obtained from a remote Registry to the model to process
+			}
+			
+		});
+
+		// --- instantiation of main model and view elided ---
+		model = new ClientModel(new IModel2ViewAdapter() {
+
+			@Override
+			public void accept(String s) {
+				//view.add(s, comp)
+				//Send to component 
+				view.accept(s);
+				
+				
+				
+			}
+			
+			//factory method to make a mini controller returning an adapter to the
+			//resulting mini MVC
+			@Override
+			public IMini2GuiAdapter createMiniController(Chatroom room) {
+				/*MiniController(IMini2GuiAdapter) {
+					room.controller = new 
+				}*/
+				IMini2GuiAdapter mini_adapter = new IMini2GuiAdapter () {	
+					@Override
+					public void updateMainView(JPanel guiView, Message contents) {
+						view.updateChatView(guiView, contents);
+					}
+					
+				};
+				
+				//how to return the adapter inside??
+				MiniController mini_controller =  new MiniController(mini_adapter);
+				
+				return mini_adapter;
+				
+			}
+			
+			
+			
+			
+			
+			@Override
+			public void startDiscoveryPanel() {
+				view.addCtrlComponent(discPnl);
+			}
+			
+			
+		});
+		view  = new  ClientView(new IView2ModelAdapter( ) {
+
+			@Override
+			public void quit() {
+				model.stop();
+
+			}
+			
+			@Override 
+			public void makeRoom(String roomName) {
+				model.createChatRoom(roomName);
+			}
+
+			
+			@Override
+			public void connect(IEndPointData endPt, String category, Consumer<Iterable<IEndPointData>> updateFn) {
+				System.out.println("In connect in controller!");
+				boolean watchOnly = false;
+				//public void connectToDiscoveryServer(String category, boolean watchOnly, Consumer<Iterable<IEndPointData>> endPtsUpdateFn)
+				
+				((IDiscoveryPanelAdapter<IEndPointData>) discPnl).connectToDiscoveryServer(category, watchOnly, updateFn);
+				((IDiscoveryPanelAdapter<IEndPointData>) discPnl).connectToEndPoint(endPt);
+			}
+
+
+			
+
+		
+			
+		}); 
+	}
+
+	/**
+	 * Starts the view then the model plus the discovery panel and model.  The view needs to be started first so that it can display 
+	 * the model status updates as it starts.   The discovery panel is added to the main view after the discovery model starts. 
+	 */
+	public void start() {
+		// start the main view and model
+		view.start();
+		model.start();   // starts the internal IRMIUtils instance too.
+
+		discPnl.start();  // start the discovery panel
+		 // Start the discovery model with info about the published endpoint, substituting the appropriate values for the application's friendly name (to appear in discovery server) and bound name for the stub in the local Registry.
+		discModel.start(model.getRMIUtils(), "Jolisa", IChatAppConnector.BOUND_NAME); 
+		view.addCtrlComponent(discPnl);  // Add the discovery panel to the view's "control" panel.
+	}
+
+	// --- other methods elided ---
+
+//	public ClientController() {
+//		
+//		discPnl = new DiscoveryPanel<IEndPointData>( (IDiscoveryPanelAdapter<IEndPointData>) new IDiscoveryPanelAdapter<IEndPointData>() {
+//
+//			/**
+//			 * watchOnly is ignored b/c discovery model configured for watchOnly = true
+//			 */
+//			@Override
+//			public void connectToDiscoveryServer(String category, boolean watchOnly, Consumer<Iterable<IEndPointData>> endPtsUpdateFn) {
+//				// Ask the discovery model to connect to the discovery server on the given category and use the given updateFn to update the endpoints list in the discovery panel.
+//				discModel.connectToDiscoveryServer(category, endPtsUpdateFn);
+//			}
+//
+//			@Override
+//			public void connectToEndPoint(IEndPointData selectedEndPt) {
+//				// Ask the discovery model to obtain a stub from a remote Registry using the info from the given endpoint 
+//				discModel.connectToEndPoint(selectedEndPt);
+//			}
+//			
+//		}, true, true);  // "Client + Server" usage mode
+//		
+//		discModel = new DiscoveryModel<IRemoteStubType>( new IDiscoveryModelToViewAdapter<IRemoteStubType>() {
+//
+//			@Override
+//			public void addStub(IRemoteStubType stub) {
+//				model.connectToStub(stub);   // Give the stub obtained from a remote Registry to the model to process
+//			}
+//			
+//		});
+//
+//		// --- instantiation of main model and view elided ---
+//		model = new ClientModel(new IModel2ViewAdapter() {
+//
+//			@Override
+//			public void accept(String s) {
+//				//view.add(s, comp)
+//				//Send to component 
+//				view.accept(s);
+//				
+//				
+//				
+//			}
+//			
+//			
+//			@Override
+//			public void startDiscoveryPanel() {
+//				view.addCtrlComponent(discPnl);
+//			}
+//			
+//			
+//		});
+//		view  = new  ClientView(new IView2ModelAdapter( ) {
+//
+//			@Override
+//			public void quit() {
+//				model.stop();
+//
+//			}
+//
+//			
+//			@Override
+//			public void connect(IEndPointData endPt, String category, Consumer<Iterable<IEndPointData>> updateFn) {
+//				System.out.println("In connect in controller!");
+//				boolean watchOnly = false;
+//				//public void connectToDiscoveryServer(String category, boolean watchOnly, Consumer<Iterable<IEndPointData>> endPtsUpdateFn)
+//				
+//				((IDiscoveryPanelAdapter<IEndPointData>) discPnl).connectToDiscoveryServer(category, watchOnly, updateFn);
+//				((IDiscoveryPanelAdapter<IEndPointData>) discPnl).connectToEndPoint(endPt);
+//			}
+//
+//
+//			
+//
+//		
+//			
+//		}); 
+//	}
+//
+//	
+//	
+//	/**
+//	 * Starts the view then the model plus the discovery panel and model.  The view needs to be started first so that it can display 
+//	 * the model status updates as it starts.   The discovery panel is added to the main view after the discovery model starts. 
+//	 */
+//	public void start() {
+//		// start the main view and model
+//		view.start();
+//		model.start();   // starts the internal IRMIUtils instance too.
+//
+//		discPnl.start();  // start the discovery panel
+//		 // Start the discovery model with info about the published endpoint, substituting the appropriate values for the application's friendly name (to appear in discovery server) and bound name for the stub in the local Registry.
+//		discModel.start(model.getRMIUtils(), FRIENDLY_NAME, BOUND_NAME); 
+//		view.addCtrlComponent(discPnl);  // Add the discovery panel to the view's "control" panel.
+//	}
+	
+	/**
+	 * Launch the application.   Sets the window closing behavior to WindowConstants.EXIT_ON_CLOSE
+	 * @param args Command line arguments
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					(new ClientController()).start();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	
+}
+
+

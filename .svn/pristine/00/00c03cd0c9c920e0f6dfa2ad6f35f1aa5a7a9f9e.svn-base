@@ -1,0 +1,62 @@
+package jmb26_wmj1.chatapp.chatroom.view;
+
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.TextArea;
+
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+
+public class ChatRoomView extends JPanel {
+	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5244971942429407991L;
+	private IChatRoomView2ModelAdapter v2mAdpt; 
+	private final JPanel panel = new JPanel();
+	
+	
+	private final JPanel newPanel = new JPanel();
+	private final TextArea panelTextArea = new TextArea();
+	
+	
+	//Constructor 
+	
+	public ChatRoomView(IChatRoomView2ModelAdapter adpt) {
+		//initGUI();
+	}
+	
+	public void updatePanel(String contents) {
+		
+	}
+	
+	public void start() {
+		this.setVisible(true);
+	}
+	/*private void initGUI() {;
+		
+		/*add(panel);
+		
+		panel.add(panel_1);
+		
+		panel.add(panel_2);
+		
+		add(panel_3);
+	}*/
+
+	public JPanel createPanel() {
+		// TODO Auto-generated method stub
+		start();
+		newPanel.add(panelTextArea);
+		
+		return newPanel;
+	}
+
+	public JPanel getPanel() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

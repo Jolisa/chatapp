@@ -1,0 +1,45 @@
+/**
+ * 
+ */
+package jmb26_wmj1.chatapp.data;
+
+import javax.swing.JComponent;
+
+import common.message.IMessage;
+import provided.datapacket.DataPacketIDFactory;
+import provided.datapacket.IDataPacketID;
+
+/**
+ * @author jolisabrown
+ *
+ */
+public interface IPoemMessage extends IMessage {
+	
+	
+	
+	
+	/**
+	 * @return A unique IDataPacketID based on the class
+	 */
+	public static IDataPacketID GetID() {
+		return DataPacketIDFactory.Singleton.makeID(IPoemMessage.class);
+	}
+	
+	@Override
+	public default IDataPacketID getID() {
+		return IPoemMessage.GetID();
+	}
+	
+	
+	/**
+	 * @return the Poem Component.
+	 */
+	public JComponent getPoemComponent();
+
+	
+	/**
+	 * @return the Poem title.
+	 */
+	public String getComponentTitle();
+
+}

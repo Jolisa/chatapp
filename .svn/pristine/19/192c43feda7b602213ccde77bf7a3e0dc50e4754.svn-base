@@ -1,0 +1,57 @@
+package jmb26_wmj1.chatapp.util;
+
+import java.rmi.RemoteException;
+
+import common.ChatAppDataPacket;
+import common.ChatAppDataPacketAlgo;
+import common.IChatAppConnector;
+import common.IChatAppReceiver;
+import common.IChatRoomConnector;
+import common.ICmdToModelAdapter;
+import common.message.IMessage;
+
+public class ChatAppReceiver implements IChatAppReceiver {
+	
+	// visitor installed 
+	private ChatAppDataPacketAlgo visitor; 
+	
+	// room member is in 
+	private IChatRoomConnector room; 
+
+	// member's userstub 
+	private IChatAppConnector userStub; 
+	
+	/**
+	 * Constructor, core of message handling
+	 * @param _room Chat room
+	 * @param _userStub Stub of the user
+	 * @param _c2mAdpt Cmd2ModelAdapter
+	 * @param visitor Visitor
+	 */
+	public ChatAppReceiver(IChatRoomConnector _room, IChatAppConnector _userStub, ICmdToModelAdapter _c2mAdpt, ChatAppDataPacketAlgo visitor) {
+		//this.room = _room;
+		// make a deep copy of this chatroom with UUID
+		room = new ChatRoomConnector(room.getChatRoomName(), _room.getID());
+		// add all existing members to this room
+		for (IChatAppReceiver repStub: _room.getAllReceivers()) {
+			room.getAllReceivers().add(repStub);
+		}
+		this.userStub = _userStub;
+		this.visitor = visitor;
+		
+
+	}
+
+	@Override
+	public String getName() throws RemoteException {
+		// TODO Auto-generated method stub
+		return userStub.getName();
+	}
+
+	@Override
+	public void receiveMessage(ChatAppDataPacket<? extends IMessage> message) throws RemoteException {
+		// TODO Auto-generated method stub
+		message.execute(visitor);
+	}
+
+}

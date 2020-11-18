@@ -1,0 +1,44 @@
+/**
+ * 
+ */
+package jmb26_wmj1.chatapp.data;
+
+import common.ChatAppDataPacket;
+import common.message.IMessage;
+import common.message.type.error.IFailureMessage;
+
+/**
+ * @author jolisabrown
+ *
+ */
+public class FailureMessage implements IFailureMessage {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3418209357779671261L;
+	
+	CmdToModelAdapter adpt;
+	String error;
+	ChatAppDataPacket packet;
+	
+	public FailureMessage(CmdToModelAdapter _adpt, ChatAppDataPacket _packet,String _error) {
+		this.adpt = _adpt;
+		this.error = _error;
+		this.packet = _packet;
+	
+	}
+
+	@Override
+	public ChatAppDataPacket<? extends IMessage> getErrorMessage() {
+		// TODO Auto-generated method stub
+		return packet;
+	}
+
+	@Override
+	public String getErrorString() {
+		// TODO Auto-generated method stub
+		return error;
+	}
+
+}

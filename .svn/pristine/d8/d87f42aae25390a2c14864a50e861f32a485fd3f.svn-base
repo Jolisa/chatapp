@@ -1,0 +1,26 @@
+package jmb26_wmj1.chatapp.chatroom.model;
+
+import java.awt.Component;
+import java.util.function.Supplier;
+
+import javax.swing.ImageIcon;
+import javax.swing.JComponent;
+import javax.swing.JPanel;
+
+public interface IChatRoomModel2ViewAdapter {
+
+	JPanel createPanel(String roomName);
+
+	JPanel updatePanel(String roomName);
+	
+	////////////////////
+	
+	public void appendString(String t); 
+	
+	public void addComponent(String title, Supplier<JComponent> comp);
+
+	public void addComponentImage(ImageIcon imageComponent);
+
+	void addComponent(String title, Component comp); 
+
+}

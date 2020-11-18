@@ -1,0 +1,31 @@
+/**
+ * 
+ */
+package jmb26_wmj1.chatapp.data;
+
+import common.AMessageAlgoCmd;
+import common.IChatAppReceiver;
+import provided.datapacket.DataPacket;
+import provided.datapacket.IDataPacketID;
+
+/**
+ * @author jolisabrown
+ *
+ */
+public class StringDataCmd extends AMessageAlgoCmd<StringData> {
+
+	CmdToModelAdapter _adapter;
+	
+	public StringDataCmd(CmdToModelAdapter adapter) {
+		this._adapter = adapter;
+	}
+	
+	
+	@Override
+	public Void apply(IDataPacketID index, DataPacket<StringData, IChatAppReceiver> host, Void... params) {
+		// TODO Auto-generated method stub
+		_adapter.displayString(host.getData().getString());
+		return null;
+	}
+
+}

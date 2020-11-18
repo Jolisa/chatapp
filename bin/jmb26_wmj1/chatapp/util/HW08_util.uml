@@ -1,0 +1,672 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLLabProfile="http:///schemas/UMLLabProfile/NS/0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/UMLLabProfile/NS/0 pathmap://UMLLAB_PROFILES/UMLLab.profile.uml#UMLLabProfile-Annotation_2-UMLLabProfile">
+  <uml:Model xmi:id="_uhV5QCBkEeu52PAPuzFgow" name="HW08_util">
+    <eAnnotations xmi:id="_vf4lICBkEeu52PAPuzFgow" source="http://ns.yatta.de/umllab">
+      <contents xmi:type="ecore:EAnnotation" xmi:id="_vf4lISBkEeu52PAPuzFgow" source="codegen">
+        <details xmi:id="_vf4lIiBkEeu52PAPuzFgow" key="codegenDirectory" value="/HW08/src"/>
+        <details xmi:id="_wFOt4CBkEeu52PAPuzFgow" key="AssociatedSourceCode" value="/HW08/src/jmb26_wmj1/chatapp/util/ChatAppConnectorWrapper.java;1553121031/1;/HW08/src/jmb26_wmj1/chatapp/util/ChatAppReceiver.java;3262326509/1;/HW08/src/jmb26_wmj1/chatapp/util/ChatRoomConnector.java;2223067437/1;/HW08/src/jmb26_wmj1/chatapp/util/ChatRoomConnectorWrapper.java;3999432166/1;/HW08/src/jmb26_wmj1/chatapp/util/ChatAppConnector.java;3004894407/1;"/>
+      </contents>
+    </eAnnotations>
+    <elementImport xmi:id="_vqi9ACBkEeu52PAPuzFgow">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+    </elementImport>
+    <elementImport xmi:id="_vqi9ASBkEeu52PAPuzFgow">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#byte"/>
+    </elementImport>
+    <elementImport xmi:id="_vqi9AiBkEeu52PAPuzFgow">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#char"/>
+    </elementImport>
+    <elementImport xmi:id="_vqjkECBkEeu52PAPuzFgow">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
+    </elementImport>
+    <elementImport xmi:id="_vqjkESBkEeu52PAPuzFgow">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#float"/>
+    </elementImport>
+    <elementImport xmi:id="_vqjkEiBkEeu52PAPuzFgow">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+    </elementImport>
+    <elementImport xmi:id="_vqjkEyBkEeu52PAPuzFgow">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+    </elementImport>
+    <elementImport xmi:id="_vqjkFCBkEeu52PAPuzFgow">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#short"/>
+    </elementImport>
+    <elementImport xmi:id="_vqjkFSBkEeu52PAPuzFgow">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </elementImport>
+    <packagedElement xmi:type="uml:Package" xmi:id="_vp-8UCBkEeu52PAPuzFgow" name="jmb26_wmj1">
+      <packagedElement xmi:type="uml:Package" xmi:id="_vp-8USBkEeu52PAPuzFgow" name="chatapp">
+        <packagedElement xmi:type="uml:Package" xmi:id="_vqEb4CBkEeu52PAPuzFgow" name="util">
+          <packagedElement xmi:type="uml:Class" xmi:id="_vqggwCBkEeu52PAPuzFgow" name="ChatAppConnectorWrapper">
+            <ownedComment xmi:id="_vuu5cCBkEeu52PAPuzFgow">
+              <body>@author jolisabrown
+ *</body>
+            </ownedComment>
+            <ownedAttribute xmi:id="_vuS0kCBkEeu52PAPuzFgow" name="remoteConnectionStub" visibility="private" type="_vtAbISBkEeu52PAPuzFgow" association="_vu0ZACBkEeu52PAPuzFgow"/>
+            <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_vulvgCBkEeu52PAPuzFgow" name="ChatAppConnectorWrapper" specification="_vte8QCBkEeu52PAPuzFgow">
+              <ownedParameter xmi:id="_vulvgSBkEeu52PAPuzFgow" name="remoteConnectionStub" type="_vtAbISBkEeu52PAPuzFgow"/>
+              <ownedParameter xmi:id="_vulvgiBkEeu52PAPuzFgow" type="_vqggwCBkEeu52PAPuzFgow" direction="return"/>
+              <language>java</language>
+              <body>this.remoteConnectionStub = remoteConnectionStub;
+	</body>
+            </ownedBehavior>
+            <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_vulvgyBkEeu52PAPuzFgow" name="getUser" specification="_vqkyMCBkEeu52PAPuzFgow">
+              <ownedParameter xmi:id="_vulvhCBkEeu52PAPuzFgow" type="_vtAbISBkEeu52PAPuzFgow" direction="return"/>
+              <language>java</language>
+              <body>return this.remoteConnectionStub;
+	</body>
+            </ownedBehavior>
+            <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_vumWkCBkEeu52PAPuzFgow" name="toString" specification="_vqlZQCBkEeu52PAPuzFgow">
+              <ownedParameter xmi:id="_vumWkSBkEeu52PAPuzFgow" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <language>java</language>
+              <body>String name = &quot;unknown user&quot;;
+		try {
+			name = remoteConnectionStub.getName();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return name;
+	</body>
+            </ownedBehavior>
+            <ownedOperation xmi:id="_vqkyMCBkEeu52PAPuzFgow" name="getUser" method="_vulvgyBkEeu52PAPuzFgow">
+              <ownedComment xmi:id="_vuvggSBkEeu52PAPuzFgow">
+                <body>Gets the user of the remote connection stub
+	 * @return The remote connection user</body>
+              </ownedComment>
+              <ownedParameter xmi:id="_vtgKYCBkEeu52PAPuzFgow" type="_vtAbISBkEeu52PAPuzFgow" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_vqlZQCBkEeu52PAPuzFgow" name="toString" method="_vumWkCBkEeu52PAPuzFgow">
+              <ownedParameter xmi:id="_vqlZQSBkEeu52PAPuzFgow" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_vte8QCBkEeu52PAPuzFgow" name="ChatAppConnectorWrapper" method="_vulvgCBkEeu52PAPuzFgow">
+              <eAnnotations xmi:id="_vtfjUCBkEeu52PAPuzFgow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+                <details xmi:id="_vtfjUSBkEeu52PAPuzFgow" key="create"/>
+              </eAnnotations>
+              <ownedComment xmi:id="_vuvggCBkEeu52PAPuzFgow">
+                <body>Constructor
+	 * @param remoteConnectionStub The remote connection stub</body>
+              </ownedComment>
+              <ownedParameter xmi:id="_vte8QSBkEeu52PAPuzFgow" name="remoteConnectionStub" type="_vtAbISBkEeu52PAPuzFgow"/>
+              <ownedParameter xmi:id="_vtfjUiBkEeu52PAPuzFgow" type="_vqggwCBkEeu52PAPuzFgow" direction="return"/>
+            </ownedOperation>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_vqockCBkEeu52PAPuzFgow" name="ChatAppReceiver">
+            <ownedComment xmi:id="_vuvggiBkEeu52PAPuzFgow">
+              <body>@author jolisabrown
+ *</body>
+            </ownedComment>
+            <ownedAttribute xmi:id="_vuUCsCBkEeu52PAPuzFgow" name="visitor" visibility="private" type="_vtC3YSBkEeu52PAPuzFgow" association="_vu1nICBkEeu52PAPuzFgow"/>
+            <ownedAttribute xmi:id="_vuUpwSBkEeu52PAPuzFgow" name="room" visibility="private" type="_vtEFgSBkEeu52PAPuzFgow" association="_vu21QCBkEeu52PAPuzFgow"/>
+            <ownedAttribute xmi:id="_vuVQ0SBkEeu52PAPuzFgow" name="userStub" visibility="private" type="_vtAbISBkEeu52PAPuzFgow" association="_vu4DYCBkEeu52PAPuzFgow"/>
+            <interfaceRealization xmi:id="_vtgxcCBkEeu52PAPuzFgow" client="_vqockCBkEeu52PAPuzFgow" supplier="_vtDecSBkEeu52PAPuzFgow" contract="_vtDecSBkEeu52PAPuzFgow"/>
+            <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_vumWkiBkEeu52PAPuzFgow" name="ChatAppReceiver" specification="_vtjNsCBkEeu52PAPuzFgow">
+              <ownedParameter xmi:id="_vum9oCBkEeu52PAPuzFgow" name="_room" type="_vtEFgSBkEeu52PAPuzFgow"/>
+              <ownedParameter xmi:id="_vum9oSBkEeu52PAPuzFgow" name="_userStub" type="_vtAbISBkEeu52PAPuzFgow"/>
+              <ownedParameter xmi:id="_vum9oiBkEeu52PAPuzFgow" name="_c2mAdpt" type="_vtEskSBkEeu52PAPuzFgow"/>
+              <ownedParameter xmi:id="_vum9oyBkEeu52PAPuzFgow" name="visitor" type="_vtC3YSBkEeu52PAPuzFgow"/>
+              <ownedParameter xmi:id="_vum9pCBkEeu52PAPuzFgow" type="_vqockCBkEeu52PAPuzFgow" direction="return"/>
+              <language>java</language>
+              <body>//this.room = _room;
+		// make a deep copy of this chatroom with UUID
+		room = new ChatRoomConnector(_room.getChatRoomName(), _room.getID());
+		// add all existing members to this room
+		//List&lt;IChatAppReceiver> receivers = _room.getAllReceivers();
+		for (IChatAppReceiver repStub: _room.getAllReceivers()) {
+			room.getAllReceivers().add(repStub);
+		}
+		this.userStub = _userStub;
+		this.visitor = visitor;
+		
+
+	</body>
+            </ownedBehavior>
+            <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_vum9pSBkEeu52PAPuzFgow" name="getName" specification="_vqqRwCBkEeu52PAPuzFgow">
+              <ownedParameter xmi:id="_vum9piBkEeu52PAPuzFgow" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <language>java</language>
+              <body>return userStub.getName();
+	</body>
+            </ownedBehavior>
+            <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_vunksCBkEeu52PAPuzFgow" name="receiveMessage" specification="_vtlC4CBkEeu52PAPuzFgow">
+              <ownedParameter xmi:id="_vunksSBkEeu52PAPuzFgow" name="message" type="_vtCQUCBkEeu52PAPuzFgow"/>
+              <language>java</language>
+              <body>message.execute(visitor);
+	</body>
+            </ownedBehavior>
+            <ownedOperation xmi:id="_vqqRwCBkEeu52PAPuzFgow" name="getName" method="_vum9pSBkEeu52PAPuzFgow" raisedException="_vs_NACBkEeu52PAPuzFgow">
+              <ownedParameter xmi:id="_vqq40CBkEeu52PAPuzFgow" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_vtjNsCBkEeu52PAPuzFgow" name="ChatAppReceiver" method="_vumWkiBkEeu52PAPuzFgow">
+              <eAnnotations xmi:id="_vtj0wSBkEeu52PAPuzFgow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+                <details xmi:id="_vtj0wiBkEeu52PAPuzFgow" key="create"/>
+              </eAnnotations>
+              <ownedComment xmi:id="_vuwHkCBkEeu52PAPuzFgow">
+                <body>Constructor, core of message handling
+	 * @param _room Chat room
+	 * @param _userStub Stub of the user
+	 * @param _c2mAdpt Cmd2ModelAdapter
+	 * @param visitor Visitor</body>
+              </ownedComment>
+              <ownedParameter xmi:id="_vtjNsSBkEeu52PAPuzFgow" name="_room" type="_vtEFgSBkEeu52PAPuzFgow"/>
+              <ownedParameter xmi:id="_vtjNsiBkEeu52PAPuzFgow" name="_userStub" type="_vtAbISBkEeu52PAPuzFgow"/>
+              <ownedParameter xmi:id="_vtjNsyBkEeu52PAPuzFgow" name="_c2mAdpt" type="_vtEskSBkEeu52PAPuzFgow"/>
+              <ownedParameter xmi:id="_vtj0wCBkEeu52PAPuzFgow" name="visitor" type="_vtC3YSBkEeu52PAPuzFgow"/>
+              <ownedParameter xmi:id="_vtj0wyBkEeu52PAPuzFgow" type="_vqockCBkEeu52PAPuzFgow" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_vtlC4CBkEeu52PAPuzFgow" name="receiveMessage" method="_vunksCBkEeu52PAPuzFgow" raisedException="_vs_NACBkEeu52PAPuzFgow">
+              <ownedParameter xmi:id="_vtlC4SBkEeu52PAPuzFgow" name="message" type="_vtCQUCBkEeu52PAPuzFgow"/>
+            </ownedOperation>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_vqwYYCBkEeu52PAPuzFgow" name="ChatRoomConnector">
+            <ownedComment xmi:id="_e2qToCBlEeu52PAPuzFgow">
+              <body>@author jolisabrown
+ *</body>
+            </ownedComment>
+            <ownedAttribute xmi:id="_vuWe8CBkEeu52PAPuzFgow" name="serialVersionUID" visibility="private" isLeaf="true" isStatic="true" isReadOnly="true">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_vuXGACBkEeu52PAPuzFgow" value="7654929088373865441L"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_vuXGASBkEeu52PAPuzFgow" name="name" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_vuXtESBkEeu52PAPuzFgow" name="ID" type="_vtLaQSBkEeu52PAPuzFgow" isReadOnly="true" association="_vu5RgSBkEeu52PAPuzFgow"/>
+            <ownedAttribute xmi:id="_vuawYCBkEeu52PAPuzFgow" name="members" visibility="private" type="_vtDecSBkEeu52PAPuzFgow" isOrdered="true" association="_vu6foSBkEeu52PAPuzFgow">
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_vuawYSBkEeu52PAPuzFgow" value="*"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_vub-gCBkEeu52PAPuzFgow" name="roomname" visibility="package">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+            <interfaceRealization xmi:id="_vtp7YCBkEeu52PAPuzFgow" client="_vqwYYCBkEeu52PAPuzFgow" supplier="_vtEFgSBkEeu52PAPuzFgow" contract="_vtEFgSBkEeu52PAPuzFgow"/>
+            <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_vuoy0CBkEeu52PAPuzFgow" name="ChatRoomConnector" specification="_vqyNkCBkEeu52PAPuzFgow">
+              <ownedParameter xmi:id="_vuoy0SBkEeu52PAPuzFgow" name="roomname">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_vuoy0iBkEeu52PAPuzFgow" type="_vqwYYCBkEeu52PAPuzFgow" direction="return">
+                <name xsi:nil="true"/>
+              </ownedParameter>
+              <language>java</language>
+              <body>this(roomname, UUID.randomUUID());
+	</body>
+            </ownedBehavior>
+            <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_vupZ4CBkEeu52PAPuzFgow" name="ChatRoomConnector" specification="_vtrJgCBkEeu52PAPuzFgow">
+              <ownedParameter xmi:id="_vupZ4SBkEeu52PAPuzFgow" name="roomname">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_vupZ4iBkEeu52PAPuzFgow" name="id" type="_vtLaQSBkEeu52PAPuzFgow"/>
+              <ownedParameter xmi:id="_vupZ4yBkEeu52PAPuzFgow" type="_vqwYYCBkEeu52PAPuzFgow" direction="return">
+                <name xsi:nil="true"/>
+              </ownedParameter>
+              <language>java</language>
+              <body>this.name = roomname;
+		this.ID = id;
+		this.members = new ArrayList&lt;>();
+	</body>
+            </ownedBehavior>
+            <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_vupZ5CBkEeu52PAPuzFgow" name="getChatRoomName" specification="_vqy0oCBkEeu52PAPuzFgow">
+              <ownedParameter xmi:id="_vupZ5SBkEeu52PAPuzFgow" direction="return">
+                <name xsi:nil="true"/>
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <language>java</language>
+              <body>return name;
+	</body>
+            </ownedBehavior>
+            <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_vuqA8CBkEeu52PAPuzFgow" name="getAllReceivers" specification="_vq0CwiBkEeu52PAPuzFgow">
+              <ownedParameter xmi:id="_vuqA8SBkEeu52PAPuzFgow" type="_vtDecSBkEeu52PAPuzFgow" isOrdered="true" direction="return">
+                <name xsi:nil="true"/>
+                <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_vuqA8iBkEeu52PAPuzFgow" value="*"/>
+              </ownedParameter>
+              <language>java</language>
+              <body>return members;
+	</body>
+            </ownedBehavior>
+            <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_vuqA8yBkEeu52PAPuzFgow" name="toString" specification="_vq3tICBkEeu52PAPuzFgow">
+              <ownedParameter xmi:id="_vuqA9CBkEeu52PAPuzFgow" direction="return">
+                <name xsi:nil="true"/>
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <language>java</language>
+              <body>return name;
+	</body>
+            </ownedBehavior>
+            <ownedOperation xmi:id="_vqyNkCBkEeu52PAPuzFgow" name="ChatRoomConnector" method="_vuoy0CBkEeu52PAPuzFgow">
+              <eAnnotations xmi:id="_vqyNkiBkEeu52PAPuzFgow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+                <details xmi:id="_vqyNkyBkEeu52PAPuzFgow" key="create"/>
+              </eAnnotations>
+              <ownedComment xmi:id="_e2qToSBlEeu52PAPuzFgow">
+                <body>constructor for chatroomconnector
+	 * @param roomname</body>
+              </ownedComment>
+              <ownedParameter xmi:id="_vqyNkSBkEeu52PAPuzFgow" name="roomname">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_vqyNlCBkEeu52PAPuzFgow" type="_vqwYYCBkEeu52PAPuzFgow" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_vqy0oCBkEeu52PAPuzFgow" name="getChatRoomName" method="_vupZ5CBkEeu52PAPuzFgow">
+              <ownedParameter xmi:id="_vqzbsCBkEeu52PAPuzFgow" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_vq0CwiBkEeu52PAPuzFgow" name="getAllReceivers" method="_vuqA8CBkEeu52PAPuzFgow">
+              <ownedParameter xmi:id="_vq0p0CBkEeu52PAPuzFgow" type="_vtDecSBkEeu52PAPuzFgow" isOrdered="true" direction="return">
+                <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_vq0p0SBkEeu52PAPuzFgow" value="*"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_vq3tICBkEeu52PAPuzFgow" name="toString" method="_vuqA8yBkEeu52PAPuzFgow">
+              <ownedParameter xmi:id="_vq3tISBkEeu52PAPuzFgow" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_vtrJgCBkEeu52PAPuzFgow" name="ChatRoomConnector" method="_vupZ4CBkEeu52PAPuzFgow">
+              <eAnnotations xmi:id="_vtrwkiBkEeu52PAPuzFgow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+                <details xmi:id="_vuCV4CBkEeu52PAPuzFgow" key="create"/>
+              </eAnnotations>
+              <ownedComment xmi:id="_e2qToiBlEeu52PAPuzFgow">
+                <body>Constructor
+	 * @param roomname Name of the room
+	 * @param id ID of the room</body>
+              </ownedComment>
+              <ownedParameter xmi:id="_vtrwkCBkEeu52PAPuzFgow" name="roomname">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_vtrwkSBkEeu52PAPuzFgow" name="id" type="_vtLaQSBkEeu52PAPuzFgow"/>
+              <ownedParameter xmi:id="_vuCV4SBkEeu52PAPuzFgow" type="_vqwYYCBkEeu52PAPuzFgow" direction="return"/>
+            </ownedOperation>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_vq8loCBkEeu52PAPuzFgow" name="ChatRoomConnectorWrapper">
+            <ownedComment xmi:id="_vuwuoSBkEeu52PAPuzFgow">
+              <body>@author jolisabrown
+ *</body>
+            </ownedComment>
+            <ownedAttribute xmi:id="_vudMoCBkEeu52PAPuzFgow" name="chatroom" visibility="private" type="_vtEFgSBkEeu52PAPuzFgow" association="_vu8U0CBkEeu52PAPuzFgow"/>
+            <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_vurPECBkEeu52PAPuzFgow" name="ChatRoomConnectorWrapper" specification="_vuEyICBkEeu52PAPuzFgow">
+              <ownedParameter xmi:id="_vurPESBkEeu52PAPuzFgow" name="room" type="_vtEFgSBkEeu52PAPuzFgow"/>
+              <ownedParameter xmi:id="_vurPEiBkEeu52PAPuzFgow" type="_vq8loCBkEeu52PAPuzFgow" direction="return"/>
+              <language>java</language>
+              <body>chatroom = room;</body>
+            </ownedBehavior>
+            <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_vurPEyBkEeu52PAPuzFgow" name="getRoom" specification="_vq9zwCBkEeu52PAPuzFgow">
+              <ownedParameter xmi:id="_vurPFCBkEeu52PAPuzFgow" type="_vtEFgSBkEeu52PAPuzFgow" direction="return"/>
+              <language>java</language>
+              <body>return chatroom;</body>
+            </ownedBehavior>
+            <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_vurPFSBkEeu52PAPuzFgow" name="toString" specification="_vq9zwSBkEeu52PAPuzFgow">
+              <ownedParameter xmi:id="_vurPFiBkEeu52PAPuzFgow" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <language>java</language>
+              <body>String name = &quot;unknown user&quot;;
+		try {
+			name = chatroom.getChatRoomName();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return name;
+	</body>
+            </ownedBehavior>
+            <ownedOperation xmi:id="_vq9zwCBkEeu52PAPuzFgow" name="getRoom" method="_vurPEyBkEeu52PAPuzFgow">
+              <ownedComment xmi:id="_vuwuoyBkEeu52PAPuzFgow">
+                <body>Gets the chat room
+	 * @return the Chat room</body>
+              </ownedComment>
+              <ownedParameter xmi:id="_vuFZMCBkEeu52PAPuzFgow" type="_vtEFgSBkEeu52PAPuzFgow" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_vq9zwSBkEeu52PAPuzFgow" name="toString" method="_vurPFSBkEeu52PAPuzFgow">
+              <ownedParameter xmi:id="_vq-a0CBkEeu52PAPuzFgow" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_vuEyICBkEeu52PAPuzFgow" name="ChatRoomConnectorWrapper" method="_vurPECBkEeu52PAPuzFgow">
+              <eAnnotations xmi:id="_vuEyIiBkEeu52PAPuzFgow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+                <details xmi:id="_vuEyIyBkEeu52PAPuzFgow" key="create"/>
+              </eAnnotations>
+              <ownedComment xmi:id="_vuwuoiBkEeu52PAPuzFgow">
+                <body>Constructor
+	 * @param room Chat room</body>
+              </ownedComment>
+              <ownedParameter xmi:id="_vuEyISBkEeu52PAPuzFgow" name="room" type="_vtEFgSBkEeu52PAPuzFgow"/>
+              <ownedParameter xmi:id="_vuEyJCBkEeu52PAPuzFgow" type="_vq8loCBkEeu52PAPuzFgow" direction="return"/>
+            </ownedOperation>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_vrAQACBkEeu52PAPuzFgow" name="ChatAppConnector">
+            <ownedComment xmi:id="_g8bGQCBlEeu52PAPuzFgow">
+              <body>@author wj
+ *</body>
+            </ownedComment>
+            <ownedAttribute xmi:id="_vueawCBkEeu52PAPuzFgow" name="name" isReadOnly="true">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_vug3ASBkEeu52PAPuzFgow" name="rooms" visibility="private" type="_vtEFgSBkEeu52PAPuzFgow" isOrdered="true" association="_vu9i8SBkEeu52PAPuzFgow">
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_vug3AiBkEeu52PAPuzFgow" value="*"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_vuiFICBkEeu52PAPuzFgow" name="connectedStubs" visibility="private" type="_vtAbISBkEeu52PAPuzFgow" isOrdered="true" association="_vu__MCBkEeu52PAPuzFgow">
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_vuiFISBkEeu52PAPuzFgow" value="*"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_vuisMSBkEeu52PAPuzFgow" name="m2vAdpt" visibility="private" type="_vtSvASBkEeu52PAPuzFgow" association="_vvB0YSBkEeu52PAPuzFgow"/>
+            <ownedAttribute xmi:id="_vujTQSBkEeu52PAPuzFgow" name="userStub" visibility="private" type="_vtAbISBkEeu52PAPuzFgow" association="_vvDCgCBkEeu52PAPuzFgow"/>
+            <interfaceRealization xmi:id="_vuGnUCBkEeu52PAPuzFgow" client="_vrAQACBkEeu52PAPuzFgow" supplier="_vtAbISBkEeu52PAPuzFgow" contract="_vtAbISBkEeu52PAPuzFgow"/>
+            <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_vutEQCBkEeu52PAPuzFgow" name="ChatAppConnector" specification="_vuH1cCBkEeu52PAPuzFgow">
+              <ownedParameter xmi:id="_vutEQSBkEeu52PAPuzFgow" name="name">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_vutEQiBkEeu52PAPuzFgow" name="_m2vAdpt" type="_vtSvASBkEeu52PAPuzFgow"/>
+              <ownedParameter xmi:id="_vutEQyBkEeu52PAPuzFgow" type="_vrAQACBkEeu52PAPuzFgow" direction="return">
+                <name xsi:nil="true"/>
+              </ownedParameter>
+              <language>java</language>
+              <body>this.name = name;
+		this.rooms = new ArrayList&lt;>();
+		this.m2vAdpt = _m2vAdpt;
+		this.connectedStubs = new ArrayList&lt;>();
+
+	</body>
+            </ownedBehavior>
+            <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_vutERCBkEeu52PAPuzFgow" name="invite" specification="_vuJDkCBkEeu52PAPuzFgow">
+              <ownedParameter xmi:id="_vutERSBkEeu52PAPuzFgow" name="connector" type="_vtEFgSBkEeu52PAPuzFgow"/>
+              <language>java</language>
+              <body>if (!rooms.contains(connector)) {
+			IChatRoomConnector roomCopy = new ChatRoomConnector(connector.getChatRoomName(), connector.getID());
+			// add all members to this room
+			for (IChatAppReceiver repStub : connector.getAllReceivers()) {
+				//roomCopy.addRep(repStub);
+				roomCopy.getAllReceivers().add(repStub);
+			}
+			// tell everybody to add you
+			IMain2MiniAdapter m2mAdpt = m2vAdpt.makeMiniMVC(roomCopy, userStub);
+			m2vAdpt.addChatroom(m2mAdpt.getMiniRoom());
+		}
+
+	</body>
+            </ownedBehavior>
+            <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_vutrUCBkEeu52PAPuzFgow" name="request" specification="_vrCsQCBkEeu52PAPuzFgow">
+              <ownedParameter xmi:id="_vutrUSBkEeu52PAPuzFgow" type="_vtEFgSBkEeu52PAPuzFgow" isOrdered="true" direction="return">
+                <name xsi:nil="true"/>
+                <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_vutrUiBkEeu52PAPuzFgow" value="*"/>
+              </ownedParameter>
+              <language>java</language>
+              <body>return rooms;
+	</body>
+            </ownedBehavior>
+            <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_vutrUyBkEeu52PAPuzFgow" name="autoConnect" specification="_vuKRsCBkEeu52PAPuzFgow">
+              <ownedParameter xmi:id="_vutrVCBkEeu52PAPuzFgow" name="connector" type="_vtAbISBkEeu52PAPuzFgow"/>
+              <language>java</language>
+              <body>m2vAdpt.addUser(connector);
+
+	</body>
+            </ownedBehavior>
+            <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_vutrVSBkEeu52PAPuzFgow" name="setUserStub" specification="_vuPKMSBkEeu52PAPuzFgow">
+              <ownedParameter xmi:id="_vutrViBkEeu52PAPuzFgow" name="userStub" type="_vtAbISBkEeu52PAPuzFgow"/>
+              <language>java</language>
+              <body>this.userStub = userStub;
+	</body>
+            </ownedBehavior>
+            <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_vuuSYCBkEeu52PAPuzFgow" name="toString" specification="_vrFvkCBkEeu52PAPuzFgow">
+              <ownedParameter xmi:id="_vuuSYSBkEeu52PAPuzFgow" direction="return">
+                <name xsi:nil="true"/>
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <language>java</language>
+              <body>return name;
+	</body>
+            </ownedBehavior>
+            <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_vuuSYiBkEeu52PAPuzFgow" name="getIChatAppConnectors" specification="_vrGWoyBkEeu52PAPuzFgow">
+              <ownedParameter xmi:id="_vuuSYyBkEeu52PAPuzFgow" type="_vtAbISBkEeu52PAPuzFgow" isOrdered="true" direction="return">
+                <name xsi:nil="true"/>
+                <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_vuuSZCBkEeu52PAPuzFgow" value="*"/>
+              </ownedParameter>
+              <language>java</language>
+              <body>return connectedStubs;
+	</body>
+            </ownedBehavior>
+            <ownedOperation xmi:id="_vrCsQCBkEeu52PAPuzFgow" name="request" method="_vutrUCBkEeu52PAPuzFgow" raisedException="_vs_NACBkEeu52PAPuzFgow">
+              <ownedParameter xmi:id="_vrDTUCBkEeu52PAPuzFgow" type="_vtEFgSBkEeu52PAPuzFgow" isOrdered="true" direction="return">
+                <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_vrDTUSBkEeu52PAPuzFgow" value="*"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_vrFvkCBkEeu52PAPuzFgow" name="toString" method="_vuuSYCBkEeu52PAPuzFgow">
+              <ownedParameter xmi:id="_vrFvkSBkEeu52PAPuzFgow" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_vrGWoyBkEeu52PAPuzFgow" name="getIChatAppConnectors" method="_vuuSYiBkEeu52PAPuzFgow" raisedException="_vs_NACBkEeu52PAPuzFgow">
+              <ownedParameter xmi:id="_vrG9sCBkEeu52PAPuzFgow" type="_vtAbISBkEeu52PAPuzFgow" isOrdered="true" direction="return">
+                <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_vrG9sSBkEeu52PAPuzFgow" value="*"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_vuH1cCBkEeu52PAPuzFgow" name="ChatAppConnector" method="_vutEQCBkEeu52PAPuzFgow">
+              <eAnnotations xmi:id="_vuIcgCBkEeu52PAPuzFgow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+                <details xmi:id="_vuIcgSBkEeu52PAPuzFgow" key="create"/>
+              </eAnnotations>
+              <ownedComment xmi:id="_g8bGQSBlEeu52PAPuzFgow">
+                <body>constructor for chatappconnector
+	 * @param name
+	 * @param _m2vAdpt</body>
+              </ownedComment>
+              <ownedParameter xmi:id="_vuH1cSBkEeu52PAPuzFgow" name="name">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_vuH1ciBkEeu52PAPuzFgow" name="_m2vAdpt" type="_vtSvASBkEeu52PAPuzFgow"/>
+              <ownedParameter xmi:id="_vuIcgiBkEeu52PAPuzFgow" type="_vrAQACBkEeu52PAPuzFgow" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_vuJDkCBkEeu52PAPuzFgow" name="invite" method="_vutERCBkEeu52PAPuzFgow" raisedException="_vs_NACBkEeu52PAPuzFgow">
+              <ownedParameter xmi:id="_vuJDkSBkEeu52PAPuzFgow" name="connector" type="_vtEFgSBkEeu52PAPuzFgow"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_vuKRsCBkEeu52PAPuzFgow" name="autoConnect" method="_vutrUyBkEeu52PAPuzFgow" raisedException="_vs_NACBkEeu52PAPuzFgow">
+              <ownedParameter xmi:id="_vuKRsSBkEeu52PAPuzFgow" name="connector" type="_vtAbISBkEeu52PAPuzFgow"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_vuN8ECBkEeu52PAPuzFgow" name="disconnect" raisedException="_vs_NACBkEeu52PAPuzFgow">
+              <ownedParameter xmi:id="_vuN8ESBkEeu52PAPuzFgow" name="connector" type="_vtAbISBkEeu52PAPuzFgow"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_vuPKMSBkEeu52PAPuzFgow" name="setUserStub" method="_vutrVSBkEeu52PAPuzFgow">
+              <ownedComment xmi:id="_g8bGQiBlEeu52PAPuzFgow">
+                <body>setter for stub
+	 * @param userStub</body>
+              </ownedComment>
+              <ownedParameter xmi:id="_vuPKMiBkEeu52PAPuzFgow" name="userStub" type="_vtAbISBkEeu52PAPuzFgow"/>
+            </ownedOperation>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Association" xmi:id="_vu0ZACBkEeu52PAPuzFgow" name="" memberEnd="_vu0ZASBkEeu52PAPuzFgow _vuS0kCBkEeu52PAPuzFgow">
+            <ownedEnd xmi:id="_vu0ZASBkEeu52PAPuzFgow" name="" type="_vqggwCBkEeu52PAPuzFgow" association="_vu0ZACBkEeu52PAPuzFgow"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Association" xmi:id="_vu1nICBkEeu52PAPuzFgow" name="" memberEnd="_vu1nISBkEeu52PAPuzFgow _vuUCsCBkEeu52PAPuzFgow">
+            <ownedEnd xmi:id="_vu1nISBkEeu52PAPuzFgow" name="" type="_vqockCBkEeu52PAPuzFgow" association="_vu1nICBkEeu52PAPuzFgow"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Association" xmi:id="_vu21QCBkEeu52PAPuzFgow" name="" memberEnd="_vu21QSBkEeu52PAPuzFgow _vuUpwSBkEeu52PAPuzFgow">
+            <ownedEnd xmi:id="_vu21QSBkEeu52PAPuzFgow" name="" type="_vqockCBkEeu52PAPuzFgow" association="_vu21QCBkEeu52PAPuzFgow"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Association" xmi:id="_vu4DYCBkEeu52PAPuzFgow" name="" memberEnd="_vu4DYSBkEeu52PAPuzFgow _vuVQ0SBkEeu52PAPuzFgow">
+            <ownedEnd xmi:id="_vu4DYSBkEeu52PAPuzFgow" name="" type="_vqockCBkEeu52PAPuzFgow" association="_vu4DYCBkEeu52PAPuzFgow"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Association" xmi:id="_vu5RgSBkEeu52PAPuzFgow" name="" memberEnd="_vu5RgiBkEeu52PAPuzFgow _vuXtESBkEeu52PAPuzFgow">
+            <ownedEnd xmi:id="_vu5RgiBkEeu52PAPuzFgow" name="" type="_vqwYYCBkEeu52PAPuzFgow" association="_vu5RgSBkEeu52PAPuzFgow"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Association" xmi:id="_vu6foSBkEeu52PAPuzFgow" name="" memberEnd="_vu6foiBkEeu52PAPuzFgow _vuawYCBkEeu52PAPuzFgow">
+            <ownedEnd xmi:id="_vu6foiBkEeu52PAPuzFgow" name="" type="_vqwYYCBkEeu52PAPuzFgow" association="_vu6foSBkEeu52PAPuzFgow"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Association" xmi:id="_vu8U0CBkEeu52PAPuzFgow" name="" memberEnd="_vu8U0SBkEeu52PAPuzFgow _vudMoCBkEeu52PAPuzFgow">
+            <ownedEnd xmi:id="_vu8U0SBkEeu52PAPuzFgow" name="" type="_vq8loCBkEeu52PAPuzFgow" association="_vu8U0CBkEeu52PAPuzFgow"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Association" xmi:id="_vu9i8SBkEeu52PAPuzFgow" name="" memberEnd="_vu9i8iBkEeu52PAPuzFgow _vug3ASBkEeu52PAPuzFgow">
+            <ownedEnd xmi:id="_vu9i8iBkEeu52PAPuzFgow" name="" type="_vrAQACBkEeu52PAPuzFgow" association="_vu9i8SBkEeu52PAPuzFgow"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Association" xmi:id="_vu__MCBkEeu52PAPuzFgow" name="" memberEnd="_vu__MSBkEeu52PAPuzFgow _vuiFICBkEeu52PAPuzFgow">
+            <ownedEnd xmi:id="_vu__MSBkEeu52PAPuzFgow" name="" type="_vrAQACBkEeu52PAPuzFgow" association="_vu__MCBkEeu52PAPuzFgow"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Association" xmi:id="_vvB0YSBkEeu52PAPuzFgow" name="" memberEnd="_vvB0YiBkEeu52PAPuzFgow _vuisMSBkEeu52PAPuzFgow">
+            <ownedEnd xmi:id="_vvB0YiBkEeu52PAPuzFgow" name="" type="_vrAQACBkEeu52PAPuzFgow" association="_vvB0YSBkEeu52PAPuzFgow"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Association" xmi:id="_vvDCgCBkEeu52PAPuzFgow" name="" memberEnd="_vvDCgSBkEeu52PAPuzFgow _vujTQSBkEeu52PAPuzFgow">
+            <ownedEnd xmi:id="_vvDCgSBkEeu52PAPuzFgow" name="" type="_vrAQACBkEeu52PAPuzFgow" association="_vvDCgCBkEeu52PAPuzFgow"/>
+          </packagedElement>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_vqOz8CBkEeu52PAPuzFgow" name="client">
+          <packagedElement xmi:type="uml:Package" xmi:id="_vqPbACBkEeu52PAPuzFgow" name="model">
+            <packagedElement xmi:type="uml:Interface" xmi:id="_vtRg4CBkEeu52PAPuzFgow" name="IMain2MiniAdapter"/>
+            <packagedElement xmi:type="uml:Interface" xmi:id="_vtSvASBkEeu52PAPuzFgow" name="IModel2ViewAdapter"/>
+          </packagedElement>
+        </packagedElement>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_vqBYkCBkEeu52PAPuzFgow" name="java">
+      <packagedElement xmi:type="uml:Package" xmi:id="_vqBYkSBkEeu52PAPuzFgow" name="rmi">
+        <packagedElement xmi:type="uml:Class" xmi:id="_vs_NACBkEeu52PAPuzFgow" name="RemoteException"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_vqJUYCBkEeu52PAPuzFgow" name="util">
+        <packagedElement xmi:type="uml:Class" xmi:id="_vtJlECBkEeu52PAPuzFgow" name="ArrayList"/>
+        <packagedElement xmi:type="uml:Interface" xmi:id="_vtKzMCBkEeu52PAPuzFgow" name="List"/>
+        <packagedElement xmi:type="uml:Class" xmi:id="_vtLaQSBkEeu52PAPuzFgow" name="UUID"/>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_vqBYkiBkEeu52PAPuzFgow" name="common">
+      <packagedElement xmi:type="uml:Package" xmi:id="_vqGRECBkEeu52PAPuzFgow" name="message">
+        <packagedElement xmi:type="uml:Interface" xmi:id="_vtFToSBkEeu52PAPuzFgow" name="IMessage"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Interface" xmi:id="_vtAbISBkEeu52PAPuzFgow" name="IChatAppConnector"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_vtCQUCBkEeu52PAPuzFgow" name="ChatAppDataPacket"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_vtC3YSBkEeu52PAPuzFgow" name="ChatAppDataPacketAlgo"/>
+      <packagedElement xmi:type="uml:Interface" xmi:id="_vtDecSBkEeu52PAPuzFgow" name="IChatAppReceiver"/>
+      <packagedElement xmi:type="uml:Interface" xmi:id="_vtEFgSBkEeu52PAPuzFgow" name="IChatRoomConnector"/>
+      <packagedElement xmi:type="uml:Interface" xmi:id="_vtEskSBkEeu52PAPuzFgow" name="ICmdToModelAdapter"/>
+    </packagedElement>
+    <profileApplication xmi:id="_vf8PgCBkEeu52PAPuzFgow">
+      <eAnnotations xmi:id="_vf82kCBkEeu52PAPuzFgow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UMLLAB_PROFILES/UMLLab.profile.uml#UMLLabProfile-Annotation_2-UMLLabProfile"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UMLLAB_PROFILES/UMLLab.profile.uml#UMLLabProfile"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLLabProfile:TargetLanguage xmi:id="_vf9doCBkEeu52PAPuzFgow" base_Package="_uhV5QCBkEeu52PAPuzFgow">
+    <languageName>java</languageName>
+  </UMLLabProfile:TargetLanguage>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_vqmnYCBkEeu52PAPuzFgow" base_Element="_vqlZQCBkEeu52PAPuzFgow"/>
+  <UMLLabProfile:Annotations xmi:id="_vqnOcCBkEeu52PAPuzFgow" base_Element="_vqlZQCBkEeu52PAPuzFgow">
+    <annotations xmi:id="_vqnOcSBkEeu52PAPuzFgow" name="Override"/>
+  </UMLLabProfile:Annotations>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_vqrf4CBkEeu52PAPuzFgow" base_Element="_vqqRwCBkEeu52PAPuzFgow"/>
+  <UMLLabProfile:Annotations xmi:id="_vqsG8CBkEeu52PAPuzFgow" base_Element="_vqqRwCBkEeu52PAPuzFgow">
+    <annotations xmi:id="_vqsG8SBkEeu52PAPuzFgow" name="Override"/>
+  </UMLLabProfile:Annotations>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_vqzbsSBkEeu52PAPuzFgow" base_Element="_vqy0oCBkEeu52PAPuzFgow"/>
+  <UMLLabProfile:Annotations xmi:id="_vq0CwCBkEeu52PAPuzFgow" base_Element="_vqy0oCBkEeu52PAPuzFgow">
+    <annotations xmi:id="_vq0CwSBkEeu52PAPuzFgow" name="Override"/>
+  </UMLLabProfile:Annotations>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_vq2fACBkEeu52PAPuzFgow" base_Element="_vq0CwiBkEeu52PAPuzFgow"/>
+  <UMLLabProfile:Annotations xmi:id="_vq3GECBkEeu52PAPuzFgow" base_Element="_vq0CwiBkEeu52PAPuzFgow">
+    <annotations xmi:id="_vq3GESBkEeu52PAPuzFgow" name="Override"/>
+  </UMLLabProfile:Annotations>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_vq4UMCBkEeu52PAPuzFgow" base_Element="_vq3tICBkEeu52PAPuzFgow"/>
+  <UMLLabProfile:Annotations xmi:id="_vq47QCBkEeu52PAPuzFgow" base_Element="_vq3tICBkEeu52PAPuzFgow">
+    <annotations xmi:id="_vq47QSBkEeu52PAPuzFgow" name="Override"/>
+  </UMLLabProfile:Annotations>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_vq-a0SBkEeu52PAPuzFgow" base_Element="_vq9zwSBkEeu52PAPuzFgow"/>
+  <UMLLabProfile:Annotations xmi:id="_vq_B4CBkEeu52PAPuzFgow" base_Element="_vq9zwSBkEeu52PAPuzFgow">
+    <annotations xmi:id="_vq_B4SBkEeu52PAPuzFgow" name="Override"/>
+  </UMLLabProfile:Annotations>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_vrD6YCBkEeu52PAPuzFgow" base_Element="_vrCsQCBkEeu52PAPuzFgow"/>
+  <UMLLabProfile:Annotations xmi:id="_vrD6YSBkEeu52PAPuzFgow" base_Element="_vrCsQCBkEeu52PAPuzFgow">
+    <annotations xmi:id="_vrEhcCBkEeu52PAPuzFgow" name="Override"/>
+  </UMLLabProfile:Annotations>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_vrGWoCBkEeu52PAPuzFgow" base_Element="_vrFvkCBkEeu52PAPuzFgow"/>
+  <UMLLabProfile:Annotations xmi:id="_vrGWoSBkEeu52PAPuzFgow" base_Element="_vrFvkCBkEeu52PAPuzFgow">
+    <annotations xmi:id="_vrGWoiBkEeu52PAPuzFgow" name="Override"/>
+  </UMLLabProfile:Annotations>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_vrHkwCBkEeu52PAPuzFgow" base_Element="_vrGWoyBkEeu52PAPuzFgow"/>
+  <UMLLabProfile:Annotations xmi:id="_vrIL0CBkEeu52PAPuzFgow" base_Element="_vrGWoyBkEeu52PAPuzFgow">
+    <annotations xmi:id="_vrIL0SBkEeu52PAPuzFgow" name="Override"/>
+  </UMLLabProfile:Annotations>
+  <UMLLabProfile:Reference xmi:id="_vtAbICBkEeu52PAPuzFgow" base_Element="_vs_NACBkEeu52PAPuzFgow"/>
+  <UMLLabProfile:Reference xmi:id="_vtBCMCBkEeu52PAPuzFgow" base_Element="_vtAbISBkEeu52PAPuzFgow"/>
+  <UMLLabProfile:Reference xmi:id="_vtC3YCBkEeu52PAPuzFgow" base_Element="_vtCQUCBkEeu52PAPuzFgow"/>
+  <UMLLabProfile:Reference xmi:id="_vtDecCBkEeu52PAPuzFgow" base_Element="_vtC3YSBkEeu52PAPuzFgow"/>
+  <UMLLabProfile:Reference xmi:id="_vtEFgCBkEeu52PAPuzFgow" base_Element="_vtDecSBkEeu52PAPuzFgow"/>
+  <UMLLabProfile:Reference xmi:id="_vtEskCBkEeu52PAPuzFgow" base_Element="_vtEFgSBkEeu52PAPuzFgow"/>
+  <UMLLabProfile:Reference xmi:id="_vtFToCBkEeu52PAPuzFgow" base_Element="_vtEskSBkEeu52PAPuzFgow"/>
+  <UMLLabProfile:Reference xmi:id="_vtF6sCBkEeu52PAPuzFgow" base_Element="_vtFToSBkEeu52PAPuzFgow"/>
+  <UMLLabProfile:Reference xmi:id="_vtKMICBkEeu52PAPuzFgow" base_Element="_vtJlECBkEeu52PAPuzFgow"/>
+  <UMLLabProfile:Reference xmi:id="_vtLaQCBkEeu52PAPuzFgow" base_Element="_vtKzMCBkEeu52PAPuzFgow"/>
+  <UMLLabProfile:Reference xmi:id="_vtMBUCBkEeu52PAPuzFgow" base_Element="_vtLaQSBkEeu52PAPuzFgow"/>
+  <UMLLabProfile:Reference xmi:id="_vtSvACBkEeu52PAPuzFgow" base_Element="_vtRg4CBkEeu52PAPuzFgow"/>
+  <UMLLabProfile:Reference xmi:id="_vtTWECBkEeu52PAPuzFgow" base_Element="_vtSvASBkEeu52PAPuzFgow"/>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_vtlp8CBkEeu52PAPuzFgow" base_Element="_vtlC4CBkEeu52PAPuzFgow"/>
+  <UMLLabProfile:Generics xmi:id="_vtm4ECBkEeu52PAPuzFgow" genericsValue="? extends IMessage" base_Element="_vtlC4SBkEeu52PAPuzFgow"/>
+  <UMLLabProfile:Annotations xmi:id="_vtnfICBkEeu52PAPuzFgow" base_Element="_vtlC4CBkEeu52PAPuzFgow">
+    <annotations xmi:id="_vtnfISBkEeu52PAPuzFgow" name="Override"/>
+  </UMLLabProfile:Annotations>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_vuJDkiBkEeu52PAPuzFgow" base_Element="_vuJDkCBkEeu52PAPuzFgow"/>
+  <UMLLabProfile:Annotations xmi:id="_vuJqoCBkEeu52PAPuzFgow" base_Element="_vuJDkCBkEeu52PAPuzFgow">
+    <annotations xmi:id="_vuJqoSBkEeu52PAPuzFgow" name="Override"/>
+  </UMLLabProfile:Annotations>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_vuLf0CBkEeu52PAPuzFgow" base_Element="_vuKRsCBkEeu52PAPuzFgow"/>
+  <UMLLabProfile:Annotations xmi:id="_vuMt8CBkEeu52PAPuzFgow" base_Element="_vuKRsCBkEeu52PAPuzFgow">
+    <annotations xmi:id="_vuMt8SBkEeu52PAPuzFgow" name="Override"/>
+  </UMLLabProfile:Annotations>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_vuN8EiBkEeu52PAPuzFgow" base_Element="_vuN8ECBkEeu52PAPuzFgow"/>
+  <UMLLabProfile:Annotations xmi:id="_vuOjICBkEeu52PAPuzFgow" base_Element="_vuN8ECBkEeu52PAPuzFgow">
+    <annotations xmi:id="_vuPKMCBkEeu52PAPuzFgow" name="Override"/>
+  </UMLLabProfile:Annotations>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_vuTboCBkEeu52PAPuzFgow" base_Element="_vuS0kCBkEeu52PAPuzFgow"/>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_vuUpwCBkEeu52PAPuzFgow" base_Element="_vuUCsCBkEeu52PAPuzFgow"/>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_vuVQ0CBkEeu52PAPuzFgow" base_Element="_vuUpwSBkEeu52PAPuzFgow"/>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_vuV34CBkEeu52PAPuzFgow" base_Element="_vuVQ0SBkEeu52PAPuzFgow"/>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_vuXtECBkEeu52PAPuzFgow" base_Element="_vuXGASBkEeu52PAPuzFgow"/>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_vuYUICBkEeu52PAPuzFgow" base_Element="_vuXtESBkEeu52PAPuzFgow">
+    <associatedElement xmi:type="uml:Operation" xmi:id="_vuY7MCBkEeu52PAPuzFgow" name="getID" method="_vunksiBkEeu52PAPuzFgow">
+      <ownedParameter xmi:id="_vuZiQCBkEeu52PAPuzFgow" type="_vtLaQSBkEeu52PAPuzFgow" direction="return"/>
+    </associatedElement>
+  </UMLLabProfile:LegacyStyledElement>
+  <UMLLabProfile:Annotations xmi:id="_vuaJUCBkEeu52PAPuzFgow" base_Element="_vuY7MCBkEeu52PAPuzFgow">
+    <annotations xmi:id="_vuaJUSBkEeu52PAPuzFgow" name="Override"/>
+  </UMLLabProfile:Annotations>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_vubXcCBkEeu52PAPuzFgow" base_Element="_vuawYCBkEeu52PAPuzFgow"/>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_vuclkCBkEeu52PAPuzFgow" base_Element="_vub-gCBkEeu52PAPuzFgow"/>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_vudzsCBkEeu52PAPuzFgow" base_Element="_vudMoCBkEeu52PAPuzFgow"/>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_vufB0CBkEeu52PAPuzFgow" base_Element="_vueawCBkEeu52PAPuzFgow">
+    <associatedElement xmi:type="uml:Operation" xmi:id="_vufo4CBkEeu52PAPuzFgow" name="getName" method="_vur2ICBkEeu52PAPuzFgow" raisedException="_vs_NACBkEeu52PAPuzFgow">
+      <ownedParameter xmi:id="_vugP8CBkEeu52PAPuzFgow" direction="return">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedParameter>
+    </associatedElement>
+  </UMLLabProfile:LegacyStyledElement>
+  <UMLLabProfile:Annotations xmi:id="_vugP8SBkEeu52PAPuzFgow" base_Element="_vufo4CBkEeu52PAPuzFgow">
+    <annotations xmi:id="_vug3ACBkEeu52PAPuzFgow" name="Override"/>
+  </UMLLabProfile:Annotations>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_vuheECBkEeu52PAPuzFgow" base_Element="_vug3ASBkEeu52PAPuzFgow"/>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_vuisMCBkEeu52PAPuzFgow" base_Element="_vuiFICBkEeu52PAPuzFgow"/>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_vujTQCBkEeu52PAPuzFgow" base_Element="_vuisMSBkEeu52PAPuzFgow"/>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_vuj6UCBkEeu52PAPuzFgow" base_Element="_vujTQSBkEeu52PAPuzFgow"/>
+  <uml:OpaqueBehavior xmi:id="_vunksiBkEeu52PAPuzFgow" name="getID" specification="_vuY7MCBkEeu52PAPuzFgow">
+    <ownedParameter xmi:id="_vuoLwCBkEeu52PAPuzFgow" type="_vtLaQSBkEeu52PAPuzFgow" direction="return">
+      <name xsi:nil="true"/>
+    </ownedParameter>
+    <language>java</language>
+    <body>return ID;
+	</body>
+  </uml:OpaqueBehavior>
+  <uml:OpaqueBehavior xmi:id="_vur2ICBkEeu52PAPuzFgow" name="getName" specification="_vufo4CBkEeu52PAPuzFgow">
+    <ownedParameter xmi:id="_vusdMCBkEeu52PAPuzFgow" direction="return">
+      <name xsi:nil="true"/>
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedParameter>
+    <language>java</language>
+    <body>return name;
+	</body>
+  </uml:OpaqueBehavior>
+  <UMLLabProfile:Reference xmi:id="_vu1AECBkEeu52PAPuzFgow" base_Element="_vu0ZACBkEeu52PAPuzFgow"/>
+  <UMLLabProfile:Reference xmi:id="_vu2OMCBkEeu52PAPuzFgow" base_Element="_vu1nICBkEeu52PAPuzFgow"/>
+  <UMLLabProfile:Reference xmi:id="_vu3cUCBkEeu52PAPuzFgow" base_Element="_vu21QCBkEeu52PAPuzFgow"/>
+  <UMLLabProfile:Reference xmi:id="_vu5RgCBkEeu52PAPuzFgow" base_Element="_vu4DYCBkEeu52PAPuzFgow"/>
+  <UMLLabProfile:Reference xmi:id="_vu6foCBkEeu52PAPuzFgow" base_Element="_vu5RgSBkEeu52PAPuzFgow"/>
+  <UMLLabProfile:Reference xmi:id="_vu7twCBkEeu52PAPuzFgow" base_Element="_vu6foSBkEeu52PAPuzFgow"/>
+  <UMLLabProfile:Reference xmi:id="_vu9i8CBkEeu52PAPuzFgow" base_Element="_vu8U0CBkEeu52PAPuzFgow"/>
+  <UMLLabProfile:Reference xmi:id="_vu_YICBkEeu52PAPuzFgow" base_Element="_vu9i8SBkEeu52PAPuzFgow"/>
+  <UMLLabProfile:Reference xmi:id="_vvB0YCBkEeu52PAPuzFgow" base_Element="_vu__MCBkEeu52PAPuzFgow"/>
+  <UMLLabProfile:Reference xmi:id="_vvCbcCBkEeu52PAPuzFgow" base_Element="_vvB0YSBkEeu52PAPuzFgow"/>
+  <UMLLabProfile:Reference xmi:id="_vvDpkCBkEeu52PAPuzFgow" base_Element="_vvDCgCBkEeu52PAPuzFgow"/>
+</xmi:XMI>

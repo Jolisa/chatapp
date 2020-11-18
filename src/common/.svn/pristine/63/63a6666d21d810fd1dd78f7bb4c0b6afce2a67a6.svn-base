@@ -1,0 +1,26 @@
+package common;
+
+import java.io.Serializable;
+import java.util.List;
+
+/**
+ * A convenient wrapper interface to encapsulate any chat room details
+ * that can help a ChatApp user connect to a chat room.
+ * @author Group C
+ *
+ */
+public interface IChatRoomConnector extends Serializable {
+
+	/**
+	 * Get the name of the chat room.
+	 * @return the name of this chat room
+	 */
+	public String getChatRoomName();
+	
+	/**
+	 * Get all of the stubs of the participants in this chat room. 
+	 * @return list of stubs of all participants in this chat room.
+	 */
+	public List<IChatAppReceiver> getAllReceivers();
+	
+}

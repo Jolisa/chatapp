@@ -1,0 +1,58 @@
+package jmb26_wmj1.chatapp.data;
+
+import common.AMessageAlgoCmd;
+import common.IChatAppReceiver;
+import common.IChatRoomConnector;
+import common.ICmdToModelAdapter;
+import common.message.IMessage;
+import common.message.type.IJoinMessage;
+import jmb26_wmj1.chatapp.chatroom.model.IChatRoomModel2ViewAdapter;
+import provided.datapacket.ADataPacketAlgoCmd;
+import provided.datapacket.DataPacket;
+import provided.datapacket.IDataPacketID;
+
+//public class JoinDataCmd extends AMessageAlgoCmd<IJoinMessage extends IMessage> extends ADataPacketAlgoCmd<Void, IJoinMessage, Void, ICmdToModelAdapter, DataPacket<IJoinMessage, IChatAppReceiver>> {
+public class JoinDataCmd extends AMessageAlgoCmd<IJoinMessage> {
+
+//	AMessageAlgoCmd<T extends IMessage> extends ADataPacketAlgoCmd<Void, T, Void, 
+//	ICmdToModelAdapter, DataPacket<T, IChatAppReceiver>> {
+//	
+	
+
+	/**
+	 * 
+	 */
+	//private static final long serialVersionUID = -5569299284233396305L;
+	
+	
+	private IChatRoomConnector room;
+	
+	private IChatRoomModel2ViewAdapter _m2vAdpt; 
+	
+
+	public JoinDataCmd(IChatRoomConnector room, IChatRoomModel2ViewAdapter m2vAdpt) {
+		
+		this.room = room;
+		this._m2vAdpt = m2vAdpt; 
+		
+		
+	}
+
+	@Override
+	public Void apply(IDataPacketID index, DataPacket<IJoinMessage, IChatAppReceiver> host, Void... params) {
+		// TODO Auto-generated method stub
+		//return null;
+		
+		room.getAllReceivers().add(host.getSender());
+		
+		return null; 
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+}

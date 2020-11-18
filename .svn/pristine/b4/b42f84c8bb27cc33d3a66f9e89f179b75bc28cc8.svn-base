@@ -1,0 +1,46 @@
+package jmb26_wmj1.chatapp.util;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import common.IChatAppReceiver;
+import common.IChatRoomConnector;
+
+public class ChatRoomConnector implements IChatRoomConnector {
+
+	
+	/**
+	 * Room's name
+	 */
+	private String name;
+	
+	/**
+	 * List of members in this room
+	 */
+	private List<IChatAppReceiver> members;
+	
+	
+	
+	/**
+	 * Constructor
+	 * @param roomname Name of the room
+	 * @param id ID of the room
+	 */
+	public ChatRoomConnector(String roomname) {
+		this.name = roomname;
+		this.members = new ArrayList<>();
+	}
+
+	@Override
+	public String getChatRoomName() {
+		// TODO Auto-generated method stub
+		return name;
+	}
+
+	@Override
+	public List<IChatAppReceiver> getAllReceivers() {
+		// TODO Auto-generated method stub
+		return members;
+	}
+
+}

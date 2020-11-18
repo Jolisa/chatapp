@@ -1,0 +1,336 @@
+/**
+ * 
+ */
+package jmb26_wmj1.chatapp.chatroom.model;
+
+import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Supplier;
+
+import javax.swing.JComponent;
+import javax.swing.JScrollPane;
+
+import common.AMessageAlgoCmd;
+import common.ChatAppDataPacket;
+import common.ChatAppDataPacketAlgo;
+import common.IChatAppConnector;
+import common.IChatAppReceiver;
+import common.IChatRoomConnector;
+import common.ICmdToModelAdapter;
+import common.message.IMessage;
+import common.message.type.IJoinMessage;
+import common.message.type.ILeaveMessage;
+import jmb26_wmj1.chatapp.client.model.Chatroom;
+import jmb26_wmj1.chatapp.data.LeaveData;
+import jmb26_wmj1.chatapp.util.ChatRoomConnector;
+import provided.datapacket.IDataPacketData;
+import provided.datapacket.IDataPacketID;
+import common.message.type.cmd.IRequestCmdMessage;
+import jmb26_wmj1.chatapp.data.RequestCmdMessage;
+
+/**
+ * @author wj
+ *
+ */
+public class ChatRoomModel {
+	
+	// chatroom 
+	private IChatRoomConnector chatroom;
+	
+	// stub connector 
+	private IChatAppConnector userStub;
+	
+	// stub of member 
+	
+	private IChatAppReceiver receiverStub; 
+	
+	// adapter from mini mvc to main MVC 
+	private IMini2MainAdapter m2MAdpt; 
+	
+	// adapter from model to view 
+	private IChatRoomModel2ViewAdapter m2vAdpt;
+	
+	private ChatAppDataPacketAlgo visitor; 
+	
+	//Do we need to add the message adapter to this mini model? It seems like we would need to...pass in via constructor?
+	//private ICmdToModelAdapter msgAdapter;
+
+	private ICmdToModelAdapter c2mAdpt = new ICmdToModelAdapter() {
+		
+
+		@Override
+		public void displayComponent(Supplier<JComponent> compSupplier) {
+			m2vAdpt.addComponent(compSupplier.get());
+			
+		}
+
+		@Override
+		public void displayScrollComponent(Supplier<JScrollPane> compSupplier) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void displayString(String text) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public String getLocalUserName() {
+			// TODO Auto-generated method stub
+			try {
+				return userStub.getName();
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
+		}
+
+		@Override
+		public String getCurrentChatRoomName() {
+			// TODO Auto-generated method stub
+			return chatroom.getChatRoomName();
+		}
+
+		@Override
+		public void sendMessage(IMessage message) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void sendMessage(IMessage message, IChatAppReceiver receiver) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+	};
+	
+	public ChatRoomModel(IChatRoomConnector chatroom2, IMini2MainAdapter adpt, IChatAppConnector _userStub, IChatRoomModel2ViewAdapter _m2vAdpt) {
+		
+		
+		// do we make chatroom somehow ? 
+		//chatroom = new Chatroom implementation here >>> ? 
+		
+		chatroom = new ChatRoomConnector(chatroom2.getChatRoomName(), chatroom2.getID());
+		
+		// add all existing members to this room 
+		for (IChatAppReceiver receiverStub : chatroom2.getAllReceivers()) {
+			chatroom.getAllReceivers().add(receiverStub);
+		}
+		
+		
+		m2MAdpt = adpt;
+		userStub = _userStub;
+		m2vAdpt = _m2vAdpt; 
+		chatroom = chatroom2;
+		
+		///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// start of message handling stuff  
+		ConcurrentHashMap<IDataPacketID, List<ChatAppDataPacket<? extends IDataPacketData>>> cache = new ConcurrentHashMap<>();
+
+		
+		ChatAppDataPacketAlgo visitorAlgos = new ChatAppDataPacketAlgo(new AMessageAlgoCmd<IMessage>() {
+
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public Void apply(IDataPacketID index, ChatAppDataPacket<IMessage> host, Void... params) {
+				System.out.println("This is the default command (where we should request command)");
+				
+				if (cache.containsKey(host.getData().getID())) {
+					cache.get(host.getData().getID()).add(host);
+				} else {
+					ArrayList<ChatAppDataPacket<? extends IDataPacketData>> newList = new ArrayList<>();
+					newList.add(host);
+					cache.put(host.getData().getID(), newList); 
+				}
+				
+				// use an request command for request unknown 
+				
+				IRequestCmdMessage data = new RequestCmdMessage(index);
+				ChatAppDataPacket<IRequestCmdMessage> requestData = new ChatAppDataPacket<>(data, receiverStub);
+				
+				////// typing error not sure how to fix 
+				host.getSender().receiveMessage(requestData);
+				
+				return null; 
+			}
+			
+		});
+		/*
+		 * Execution case for join command
+		 */
+		visitorAlgos.setCmd(IJoinMessage.GetID(), new AMessageAlgoCmd<IMessage>() {
+
+			/**
+			 * Generated UID
+			 */
+			private static final long serialVersionUID = -354492408991302327L;
+
+			@Override
+			public Void apply(IDataPacketID index, ChatAppDataPacket<IMessage> host, Void... params) {
+				System.out.println("we have entered join message command");
+				//addReceiver(host.getSender());
+				
+				if (!chatroom.getAllReceivers().contains(host.getSender())) chatroom.getAllReceivers().add(host.getSender());
+				
+				
+				return null;
+			}
+			
+		});
+		/*
+		 * Execution case for leave command
+		 */
+		visitorAlgos.setCmd(ILeaveMessage.GetID(), new AMessageAlgoCmd<IMessage>() {
+
+			/**
+			 * Generated UID
+			 */
+			private static final long serialVersionUID = -354492408991302327L;
+
+			@Override
+			public Void apply(IDataPacketID index, ChatAppDataPacket<IMessage> host, Void... params) {
+				System.out.println("we have entered leave message command");
+				//removeReceiver(host.getSender());
+				
+				chatroom.getAllReceivers().remove(host.getSender());
+				
+				return null;
+			}
+			
+		});
+		
+		
+		
+		
+	}
+		
+		
+
+	public IChatRoomConnector getRoom() {
+		// TODO Auto-generated method stub
+		return this.chatroom;
+	}
+
+	
+	///////////////////////////////////////////////////
+	
+	// remove room from list of rooms 
+	public void removeRoomfromList() {
+		m2MAdpt.removeRoomFromMainList(chatroom);
+	}
+	
+	public void leaveRoom() throws RemoteException {
+		
+		chatroom.getAllReceivers().remove(receiverStub); 
+		
+		LeaveData data = new LeaveData(receiverStub); 
+		/// not sure what to do after,.... 
+		
+		// tell everyone to remove user 
+		ChatAppDataPacket<ILeaveMessage> leaveMsg = new ChatAppDataPacket<>(data, receiverStub);
+		
+		// need to message everyone with this data now... probably a for loop 1 by 1 
+		
+		
+		
+		
+	}
+	
+	/////////////////////////////////////////////////////////////////////////////////
+	
+	/**
+	 * Add a new member to chatroom upon join request
+	 * @param sender member sending join request
+	 */
+	protected void addReceiver(IChatAppReceiver sender) {
+		chatroom.getAllReceivers().add(sender);
+		
+	}
+	/**
+	 * Remove a member from chatroom upon request to leave
+	 * @param sender member sending leave request
+	 */
+	protected void removeReceiver(IChatAppReceiver sender) {
+		// TODO Auto-generated method stub
+		chatroom.getAllReceivers().remove(sender);
+	}
+
+	/**
+	 * Create extended visitors for mini model
+	 */
+	public void start() {
+		/*
+		 * Default Execution case 
+		 */
+		ChatAppDataPacketAlgo visitorAlgos = new ChatAppDataPacketAlgo(new AMessageAlgoCmd<IMessage>() {
+
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public Void apply(IDataPacketID index, ChatAppDataPacket<IMessage> host, Void... params) {
+				System.out.println("This is the default command (where we should request command)");
+				return null;
+			}
+			
+		});
+		/*
+		 * Execution case for join command
+		 */
+		visitorAlgos.setCmd(IJoinMessage.GetID(), new AMessageAlgoCmd<IMessage>() {
+
+			/**
+			 * Generated UID
+			 */
+			private static final long serialVersionUID = -354492408991302327L;
+
+			@Override
+			public Void apply(IDataPacketID index, ChatAppDataPacket<IMessage> host, Void... params) {
+				System.out.println("we have entered join message command");
+				addReceiver(host.getSender());
+				return null;
+			}
+			
+		});
+		/*
+		 * Execution case for leave command
+		 */
+		visitorAlgos.setCmd(ILeaveMessage.GetID(), new AMessageAlgoCmd<IMessage>() {
+
+			/**
+			 * Generated UID
+			 */
+			private static final long serialVersionUID = -354492408991302327L;
+
+			@Override
+			public Void apply(IDataPacketID index, ChatAppDataPacket<IMessage> host, Void... params) {
+				System.out.println("we have entered leave message command");
+				removeReceiver(host.getSender());
+				return null;
+			}
+			
+		});
+		
+	}
+	
+	
+	/////////////////////////////////////////////////////////////////////// do we make inside start or constructor 
+
+	
+	
+	
+
+}

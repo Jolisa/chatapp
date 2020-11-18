@@ -1,0 +1,31 @@
+package common.message.type;
+
+import common.IChatAppUser;
+import common.message.IMessage;
+import provided.datapacket.DataPacketIDFactory;
+import provided.datapacket.IDataPacketID;
+
+/**
+ * Message type that users send when joining the chatroom
+ * @author Group C
+ * @param <M> generic type of message
+ *
+ */
+public interface IConnectMessage<M extends IMessage> extends IMessage {
+	
+	/**
+	 * Returns ID of data type
+	 * @return data packet ID of data type
+	 */
+	public static IDataPacketID GetID() {
+		return DataPacketIDFactory.Singleton.makeID(IConnectMessage.class);
+	}
+	
+	/**
+	 * Sends a default connected message to the other users.
+	 * @param userStub stub of user that joined chat room
+	 * @return default message that someone has joined the chat room
+	 */
+	public IChatAppUser connect();
+	
+}
